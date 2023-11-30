@@ -42,6 +42,8 @@ dependencies:
     path: shareds/shared_common
   shared_libraries:
     path: shareds/shared_libraries
+  shared_navigation:
+    path: shareds/shared_navigation
 
 dev_dependencies:
   flutter_test:

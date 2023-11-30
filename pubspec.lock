@@ -25,6 +25,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  authentication_feature:
+    dependency: transitive
+    description:
+      path: "features/authentication_feature"
+      relative: true
+    source: path
+    version: "0.0.1"
   bloc:
     dependency: transitive
     description:
@@ -296,6 +303,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  onboarding_feature:
+    dependency: transitive
+    description:
+      path: "features/onboarding_feature"
+      relative: true
+    source: path
+    version: "0.0.1"
   path:
     dependency: transitive
     description:
@@ -427,6 +441,13 @@ packages:
     dependency: "direct main"
     description:
       path: "shareds/shared_libraries"
+      relative: true
+    source: path
+    version: "0.0.1"
+  shared_navigation:
+    dependency: "direct main"
+    description:
+      path: "shareds/shared_navigation"
       relative: true
     source: path
     version: "0.0.1"
