@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_story_dicoding_intermediate/di/injections.dart';
 
 void main() {
+  Injections().initialize();
   runApp(const MyApp());
 }
 

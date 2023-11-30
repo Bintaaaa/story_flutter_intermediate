@@ -1,0 +1,7 @@
+name: flutter_story_dicoding_intermediate
+
+packages:
+  - core/**
+  - shareds/**
+  - features/**
+  - '*'
