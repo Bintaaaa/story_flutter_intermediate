@@ -1,0 +1,6 @@
+# melos_managed_dependency_overrides: shared_component,shared_libraries
+dependency_overrides:
+  shared_component:
+    path: ../../shareds/shared_component
+  shared_libraries:
+    path: ../../shareds/shared_libraries

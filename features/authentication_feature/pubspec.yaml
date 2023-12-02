@@ -1,6 +1,7 @@
 name: authentication_feature
 description: A new Flutter package project.
 version: 0.0.1
+publish_to: 'none'
 homepage:
 
 environment:
@@ -10,6 +11,18 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  authentication_core:
+    path: ../../core/authentication_core
+
+  shared_component:
+    path: ../../shareds/shared_component
+
+  shared_common:
+    path: ../../shareds/shared_common
+
+  shared_libraries:
+    path: ../../shareds/shared_libraries
 
 dev_dependencies:
   flutter_test:

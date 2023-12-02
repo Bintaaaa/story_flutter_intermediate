@@ -14,7 +14,6 @@ dependencies:
 
   shared_libraries:
     path: ../shared_libraries
-
   onboarding_feature:
     path: ../../features/onboarding_feature
   authentication_feature:

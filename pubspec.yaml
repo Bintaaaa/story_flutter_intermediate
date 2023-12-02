@@ -45,6 +45,9 @@ dependencies:
   shared_navigation:
     path: shareds/shared_navigation
 
+  authentication_core:
+    path: core/authentication_core
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
