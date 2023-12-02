@@ -1,5 +1,7 @@
-# melos_managed_dependency_overrides: authentication_feature,onboarding_feature,shared_common,shared_libraries,shared_component
+# melos_managed_dependency_overrides: authentication_core,authentication_feature,onboarding_feature,shared_common,shared_component,shared_libraries
 dependency_overrides:
+  authentication_core:
+    path: ../../core/authentication_core
   authentication_feature:
     path: ../../features/authentication_feature
   onboarding_feature:
