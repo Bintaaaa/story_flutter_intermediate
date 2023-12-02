@@ -1,5 +1,9 @@
-# melos_managed_dependency_overrides: shared_component,shared_libraries
+# melos_managed_dependency_overrides: authentication_core,shared_common,shared_component,shared_libraries
 dependency_overrides:
+  authentication_core:
+    path: ../../core/authentication_core
+  shared_common:
+    path: ../../shareds/shared_common
   shared_component:
     path: ../../shareds/shared_component
   shared_libraries:
