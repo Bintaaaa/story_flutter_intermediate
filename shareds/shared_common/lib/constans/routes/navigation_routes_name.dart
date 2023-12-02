@@ -1,6 +1,8 @@
 class NavigationRoutesName {
   const NavigationRoutesName();
+  String get signInName => "signIn";
+  String get signInPath => "/auth/sign-in";
 
-  String get signIn => "auth/sign-in";
-  String get splash => "/";
+  String get splashName => "splash";
+  String get splashPath => "/";
 }
