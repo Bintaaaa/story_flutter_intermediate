@@ -3,14 +3,14 @@ import 'package:shared_common/di/shared_common_injection.dart';
 import 'package:shared_libraries/di/shared_libraries_injection.dart';
 
 class Injections {
-  initialize() {
-    _shareds();
+  initialize() async {
+    await _shareds();
     _domain();
   }
 
-  void _shareds() {
+  Future<void> _shareds() async {
     SharedCommonInjection();
-    SharedLibrariesInjection();
+    await SharedLibrariesInjection().sharedPreferences();
   }
 
   void _domain() {

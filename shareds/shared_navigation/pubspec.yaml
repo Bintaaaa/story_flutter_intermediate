@@ -14,6 +14,8 @@ dependencies:
 
   shared_libraries:
     path: ../shared_libraries
+  authentication_core:
+    path: ../../core/authentication_core
   onboarding_feature:
     path: ../../features/onboarding_feature
   authentication_feature:

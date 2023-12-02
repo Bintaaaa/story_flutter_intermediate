@@ -3,6 +3,7 @@ import 'package:authentication_core/data/datasources/remote/authenteication_remo
 import 'package:authentication_core/data/mappers/authentication_mapper.dart';
 import 'package:authentication_core/data/repository/authentication_repository_impl.dart';
 import 'package:authentication_core/domain/repositories/authentication_repository.dart';
+import 'package:authentication_core/domain/usecases/get_token_usecase.dart';
 import 'package:authentication_core/domain/usecases/post_register_usecase.dart';
 import 'package:authentication_core/domain/usecases/post_sign_in_usecase.dart';
 import 'package:shared_libraries/get_it/get_it.dart';
@@ -52,6 +53,11 @@ class AuthenticationInjection {
     );
     sl.registerLazySingleton<PostSignInUseCase>(
       () => PostSignInUseCase(
+        authenticationRepository: sl(),
+      ),
+    );
+    sl.registerLazySingleton<GetTokenUseCase>(
+      () => GetTokenUseCase(
         authenticationRepository: sl(),
       ),
     );
