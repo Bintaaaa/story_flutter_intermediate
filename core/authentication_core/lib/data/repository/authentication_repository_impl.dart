@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:authentication_core/data/datasources/remote/authenteication_remote_datasource.dart';
 import 'package:authentication_core/data/mappers/authentication_mapper.dart';
 import 'package:authentication_core/domain/entities/register_body_entity.dart';
@@ -31,16 +29,10 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
           response,
         ),
       );
-    } on SocketException {
-      return const Left(
-        FailureResponse(
-          errorMessage: "Jaringan anda tidak stabil",
-        ),
-      );
-    } on DioException catch (e) {
+    } on DioException catch (error) {
       return Left(
         FailureResponse(
-          errorMessage: e.response?.data["message"] ?? "Terjadi kesalahan pada server",
+          dioException: error,
         ),
       );
     }

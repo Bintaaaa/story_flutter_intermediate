@@ -31,7 +31,7 @@ class ViewData<T> {
         data: data,
       );
 
-  factory ViewData.error({required String message, required FailureResponse? failureResponse}) => ViewData._(
+  factory ViewData.error({required String message, FailureResponse? failureResponse}) => ViewData._(
         status: ViewState.error,
         message: message,
         failure: failureResponse,

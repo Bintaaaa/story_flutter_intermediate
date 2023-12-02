@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:authentication_core/domain/entities/register_body_entity.dart';
 import 'package:authentication_core/domain/usecases/post_register_usecase.dart';
 import 'package:authentication_feature/bloc/sign_up/sign_up_state.dart';
-import 'package:shared_common/error/failure_response.dart';
 import 'package:shared_common/states/view_data_state.dart';
 import 'package:shared_libraries/flutter_bloc/flutter_bloc.dart';
 
@@ -31,10 +30,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       (failure) => emit(
         state.copyWith(
           signUpState: ViewData.error(
-            message: failure.errorMessage,
-            failureResponse: FailureResponse(
-              errorMessage: failure.errorMessage,
-            ),
+            message: failure.errorMessage!,
           ),
         ),
       ),

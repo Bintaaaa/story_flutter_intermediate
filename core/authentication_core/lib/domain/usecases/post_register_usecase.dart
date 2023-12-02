@@ -13,9 +13,9 @@ class PostRegisterUsecase extends UseCase<RegisterResponseEntity, RegisterBodyEn
   @override
   Future<Either<FailureResponse, RegisterResponseEntity>> call(RegisterBodyEntity parameter) async {
     if (parameter.password.length < 8) {
-      return const Left(
+      return Left(
         FailureResponse(
-          errorMessage: "Password setidaknya 8 karakter ya",
+          errorMessage: "Password Minimal 8 Karakter ya!",
         ),
       );
     } else {

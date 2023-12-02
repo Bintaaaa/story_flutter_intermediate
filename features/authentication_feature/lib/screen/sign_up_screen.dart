@@ -27,7 +27,7 @@ class SignUpScreen extends StatelessWidget {
               context.read<SignUpCubit>().signUp(
                     name: "Ronal",
                     email: "ronaldo1@ronaldo.com",
-                    password: "12345678",
+                    password: "1234568",
                   );
             },
             child: const Text("Kirim"),
