@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:authentication_core/domain/entities/register_body_entity.dart';
 import 'package:authentication_core/domain/usecases/post_register_usecase.dart';
 import 'package:authentication_feature/bloc/sign_up/sign_up_state.dart';
@@ -18,7 +16,11 @@ class SignUpCubit extends Cubit<SignUpState> {
         );
 
   signUp({required String name, required String email, required String password}) async {
-    log("Name : $name, email: $email, password: $password,");
+    emit(
+      state.copyWith(
+        signUpState: ViewData.loading(),
+      ),
+    );
     final result = await postRegisterUsecase.call(
       RegisterBodyEntity(
         email: email,

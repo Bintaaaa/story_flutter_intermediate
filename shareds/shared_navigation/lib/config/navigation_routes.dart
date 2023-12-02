@@ -31,14 +31,18 @@ class NavigationRoutes {
         path: ConstansValue.routes.signUpPath,
         name: ConstansValue.routes.signUpName,
         builder: (context, state) => BlocProvider<SignUpCubit>(
-          create: (context) =>SignUpCubit(postRegisterUsecase: sl(),),
+          create: (context) => SignUpCubit(
+            postRegisterUsecase: sl(),
+          ),
           child: const SignUpScreen(),
         ),
       ),
       GoRoute(
         path: ConstansValue.routes.signInPath,
         name: ConstansValue.routes.signInName,
-        builder: (context, state) => const SignInScreen(),
+        builder: (context, state) => SignInScreen(
+          state: state,
+        ),
       ),
     ];
   }

@@ -8,25 +8,31 @@ class OptionalAuthenticationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          ElevatedButton(
-            onPressed: () {},
-            child: const Text(
-              "Login",
+      body: SafeArea(
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                context.pushNamed(
+                  ConstansValue.routes.signInName,
+                );
+              },
+              child: const Text(
+                "Login",
+              ),
             ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              context.goNamed(
-                ConstansValue.routes.signUpName,
-              );
-            },
-            child: const Text(
-              "Register",
+            ElevatedButton(
+              onPressed: () {
+                context.pushNamed(
+                  ConstansValue.routes.signUpName,
+                );
+              },
+              child: const Text(
+                "Register",
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

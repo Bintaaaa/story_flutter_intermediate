@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:authentication_core/data/models/general_response_model.dart';
 import 'package:authentication_core/data/models/register_body_model.dart';
 import 'package:shared_common/constans/constans_values.dart';
@@ -20,7 +18,6 @@ class AuthenticationRemoteDatasourceImpl implements AuthenticationRemoteDatasour
 
   @override
   Future<GeneralResponseModel> signUp({required RegisterBodyModel params}) async {
-    log("Datasource Name : ${params.name}, email: ${params.email}, password: ${params.password},");
     try {
       final response = await dio.post(
         ConstansValue.network.register,

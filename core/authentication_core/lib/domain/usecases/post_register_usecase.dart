@@ -12,16 +12,43 @@ class PostRegisterUsecase extends UseCase<RegisterResponseEntity, RegisterBodyEn
 
   @override
   Future<Either<FailureResponse, RegisterResponseEntity>> call(RegisterBodyEntity parameter) async {
-    if (parameter.password.length < 8) {
+    bool isEmptyAllField = parameter.name.isEmpty && parameter.email.isEmpty && parameter.password.isEmpty;
+    if (isEmptyAllField) {
       return Left(
         FailureResponse(
-          errorMessage: "Password Minimal 8 Karakter ya!",
+          errorMessage: "Isi semua dulu",
+        ),
+      );
+    } else if (parameter.email.isEmpty) {
+      return Left(
+        FailureResponse(
+          errorMessage: "Isi email dulu",
+        ),
+      );
+    } else if (parameter.password.isEmpty) {
+      return Left(
+        FailureResponse(
+          errorMessage: "Isi password dulu",
+        ),
+      );
+    } else if (parameter.name.isEmpty) {
+      return Left(
+        FailureResponse(
+          errorMessage: "Isi nama ya",
         ),
       );
     } else {
-      return await authenticationRepository.signUp(
-        params: parameter,
-      );
+      if (parameter.password.length < 8) {
+        return Left(
+          FailureResponse(
+            errorMessage: "Password Minimal 8",
+          ),
+        );
+      } else {
+        return await authenticationRepository.signUp(
+          params: parameter,
+        );
+      }
     }
   }
 }
