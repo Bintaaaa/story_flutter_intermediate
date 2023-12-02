@@ -1,3 +1,4 @@
+import 'package:authentication_feature/bloc/sig_in/sign_in_cubit.dart';
 import 'package:authentication_feature/bloc/sign_up/sign_up_cubit.dart';
 import 'package:authentication_feature/screen/optional_authentication_screen.dart';
 import 'package:authentication_feature/screen/sign_in_screen.dart';
@@ -8,6 +9,7 @@ import 'package:shared_common/constans/constans_values.dart';
 import 'package:shared_libraries/flutter_bloc/flutter_bloc.dart';
 import 'package:shared_libraries/get_it/get_it.dart';
 import 'package:shared_libraries/go_router/go_router.dart';
+import 'package:story_features/screen/stories_screen.dart';
 
 class NavigationRoutes {
   List<RouteBase> get routes => _routes();
@@ -40,9 +42,19 @@ class NavigationRoutes {
       GoRoute(
         path: ConstansValue.routes.signInPath,
         name: ConstansValue.routes.signInName,
-        builder: (context, state) => SignInScreen(
-          state: state,
+        builder: (context, state) => BlocProvider<SignInCubit>(
+          create: (context) => SignInCubit(
+            postSignInUseCase: sl(),
+          ),
+          child: SignInScreen(
+            state: state,
+          ),
         ),
+      ),
+      GoRoute(
+        path: ConstansValue.routes.storiesPath,
+        name: ConstansValue.routes.storiesName,
+        builder: (context, state) => const StoriesScreen(),
       ),
     ];
   }

@@ -12,4 +12,10 @@ class NavigationRoutesName {
 
   String get signInName => "signIn";
   String get signInPath => "/auth/sign-in";
+
+  String get storiesName => "listStory";
+  String get storiesPath => "/stories/list";
+
+  String get createStoriesName => "createStory";
+  String get createStoriesPath => "/stories/create";
 }

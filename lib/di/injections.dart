@@ -1,4 +1,4 @@
-import 'package:authentication_core/data/di/authentication_injection.dart';
+import 'package:authentication_core/di/authentication_injection.dart';
 import 'package:shared_common/di/shared_common_injection.dart';
 import 'package:shared_libraries/di/shared_libraries_injection.dart';
 

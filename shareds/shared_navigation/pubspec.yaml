@@ -18,6 +18,8 @@ dependencies:
     path: ../../features/onboarding_feature
   authentication_feature:
     path: ../../features/authentication_feature
+  story_features:
+    path: ../../features/story_features
   shared_common:
     path: ../../shareds/shared_common
 

@@ -94,7 +94,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           );
                     },
                     isLoading: status.isLoading,
-                    title: "Login",
+                    title: "Register",
                   ),
                 ],
               ),
