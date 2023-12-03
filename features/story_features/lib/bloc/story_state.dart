@@ -10,9 +10,9 @@ class StoryState extends Equatable {
   final ViewData<StoriesResponseEntity> stateStories;
   final ViewData<StoryResponseEntity> stateStory;
   final ViewData<CreateStoryResponseEntity> stateCreateStory;
-  ViewData<File> stateImage;
+  final ViewData<File> stateImage;
 
-  StoryState({
+  const StoryState({
     required this.stateStories,
     required this.stateStory,
     required this.stateCreateStory,

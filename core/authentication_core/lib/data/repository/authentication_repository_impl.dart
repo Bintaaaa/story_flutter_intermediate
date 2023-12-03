@@ -102,4 +102,22 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       );
     }
   }
+
+  @override
+  Future<Either<FailureResponse, bool>> removeToken() async {
+    try {
+      log("Success remove Token");
+      final response = await authenticationLocalDatasource.removeToken();
+
+      return Right(
+        response,
+      );
+    } catch (error) {
+      return Left(
+        FailureResponse(
+          errorMessage: "Error Local - please re-login",
+        ),
+      );
+    }
+  }
 }

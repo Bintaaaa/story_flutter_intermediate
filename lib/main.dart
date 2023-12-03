@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_story_dicoding_intermediate/di/injections.dart';
 import 'package:shared_libraries/go_router/go_router.dart';
+import 'package:shared_libraries/intl/app_localizations.dart';
 import 'package:shared_navigation/config/navigation_config.dart';
 
 void main() async {
@@ -32,6 +33,8 @@ class _MyAppState extends State<MyApp> {
       routeInformationProvider: _config!.routeInformationProvider,
       routerDelegate: _config!.routerDelegate,
       backButtonDispatcher: RootBackButtonDispatcher(),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
     );
   }
 }

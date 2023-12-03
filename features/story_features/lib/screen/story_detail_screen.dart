@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_common/states/view_data_state.dart';
 import 'package:shared_component/images/image_network_component.dart';
 import 'package:shared_libraries/flutter_bloc/flutter_bloc.dart';
+import 'package:shared_libraries/intl/app_localizations.dart';
 import 'package:story_features/bloc/story_cubit.dart';
 import 'package:story_features/bloc/story_state.dart';
 
@@ -14,8 +15,8 @@ class StoryDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Story Detail",
+        title: Text(
+          AppLocalizations.of(context)!.detailAppBar,
         ),
       ),
       body: SafeArea(

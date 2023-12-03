@@ -7,6 +7,7 @@ import 'package:shared_component/button/button_filled_component.dart';
 import 'package:shared_component/text_field/text_field_component.dart';
 import 'package:shared_libraries/flutter_bloc/flutter_bloc.dart';
 import 'package:shared_libraries/go_router/go_router.dart';
+import 'package:shared_libraries/intl/app_localizations.dart';
 
 class SignInScreen extends StatefulWidget {
   final GoRouterState state;
@@ -96,7 +97,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           );
                     },
                     isLoading: status.isLoading,
-                    title: "Login",
+                    title: AppLocalizations.of(context)!.buttonLogin,
                   ),
                 ],
               );

@@ -9,5 +9,6 @@ abstract class AuthenticationRepository {
   Future<Either<FailureResponse, RegisterResponseEntity>> signUp({required RegisterBodyEntity params});
   Future<Either<FailureResponse, SignInResponseEntity>> signIn({required SignInBodyEntity params});
   Future<Either<FailureResponse, bool>> cacheToken({required String token});
+  Future<Either<FailureResponse, bool>> removeToken();
   Either<FailureResponse, String> getToken();
 }

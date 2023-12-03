@@ -1,4 +1,5 @@
 import 'package:authentication_feature/bloc/sig_in/sign_in_cubit.dart';
+import 'package:authentication_feature/bloc/sig_out/sign_out_cubit.dart';
 import 'package:authentication_feature/bloc/sign_up/sign_up_cubit.dart';
 import 'package:authentication_feature/screen/optional_authentication_screen.dart';
 import 'package:authentication_feature/screen/profile_screen.dart';
@@ -98,7 +99,12 @@ class NavigationRoutes {
       GoRoute(
         path: ConstansValue.routes.profilePath,
         name: ConstansValue.routes.profileName,
-        builder: (context, state) => const ProfileScreen(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => SignOutCubit(
+            removeTokenUseCase: sl(),
+          ),
+          child: const ProfileScreen(),
+        ),
       ),
     ];
   }

@@ -6,6 +6,7 @@ import 'package:authentication_core/domain/repositories/authentication_repositor
 import 'package:authentication_core/domain/usecases/get_token_usecase.dart';
 import 'package:authentication_core/domain/usecases/post_register_usecase.dart';
 import 'package:authentication_core/domain/usecases/post_sign_in_usecase.dart';
+import 'package:authentication_core/domain/usecases/remove_token_usecase.dart';
 import 'package:shared_libraries/get_it/get_it.dart';
 
 class AuthenticationInjection {
@@ -58,6 +59,12 @@ class AuthenticationInjection {
     );
     sl.registerLazySingleton<GetTokenUseCase>(
       () => GetTokenUseCase(
+        authenticationRepository: sl(),
+      ),
+    );
+
+    sl.registerLazySingleton<RemoveTokenUseCase>(
+      () => RemoveTokenUseCase(
         authenticationRepository: sl(),
       ),
     );

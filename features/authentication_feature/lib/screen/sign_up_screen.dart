@@ -7,6 +7,7 @@ import 'package:shared_component/button/button_filled_component.dart';
 import 'package:shared_component/text_field/text_field_component.dart';
 import 'package:shared_libraries/flutter_bloc/flutter_bloc.dart';
 import 'package:shared_libraries/go_router/go_router.dart';
+import 'package:shared_libraries/intl/app_localizations.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -94,7 +95,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           );
                     },
                     isLoading: status.isLoading,
-                    title: "Register",
+                    title: AppLocalizations.of(context)!.buttonRegister,
                   ),
                 ],
               ),

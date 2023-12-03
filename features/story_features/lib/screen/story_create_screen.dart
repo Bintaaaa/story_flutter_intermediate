@@ -5,6 +5,7 @@ import 'package:shared_component/button/button_filled_component.dart';
 import 'package:shared_component/text_field/text_field_component.dart';
 import 'package:shared_libraries/flutter_bloc/flutter_bloc.dart';
 import 'package:shared_libraries/go_router/go_router.dart';
+import 'package:shared_libraries/intl/app_localizations.dart';
 import 'package:story_features/bloc/story_cubit.dart';
 import 'package:story_features/bloc/story_state.dart';
 
@@ -26,8 +27,8 @@ class _StoryCreateScreenState extends State<StoryCreateScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Make A Story",
+        title: Text(
+          AppLocalizations.of(context)!.createAppBar,
         ),
       ),
       body: SafeArea(
@@ -63,10 +64,8 @@ class _StoryCreateScreenState extends State<StoryCreateScreen> {
                                 fit: BoxFit.cover,
                               ),
                             )
-                          : const Center(
-                              child: Text(
-                                "Take a Picture",
-                              ),
+                          : Center(
+                              child: Text(AppLocalizations.of(context)!.takeApicture),
                             ),
                     );
                   },
@@ -77,7 +76,7 @@ class _StoryCreateScreenState extends State<StoryCreateScreen> {
               ),
               TextFieldComponent(
                 controller: descriptionController,
-                label: "Description",
+                label: AppLocalizations.of(context)!.description,
                 maxLines: 3,
               ),
               const SizedBox.square(
@@ -109,7 +108,7 @@ class _StoryCreateScreenState extends State<StoryCreateScreen> {
                           );
                     },
                     isLoading: status.isLoading,
-                    title: "Posting Now!",
+                    title: AppLocalizations.of(context)!.buttonPost,
                   );
                 },
               )

@@ -4,6 +4,7 @@ import 'package:shared_libraries/shared_preferences/shared_preferences.dart';
 abstract class AuthenticationLocalDatasource {
   Future<bool> cacheToken({required String token});
   String getToken();
+  Future<bool> removeToken();
 }
 
 class AuthenticationLocalDatasourceImpl implements AuthenticationLocalDatasource {
@@ -32,4 +33,9 @@ class AuthenticationLocalDatasourceImpl implements AuthenticationLocalDatasource
     );
     return response ?? "";
   }
+
+  @override
+  Future<bool> removeToken() async => await sharedPreferences.remove(
+        ConstansValue.keyStorage.tokenLogin,
+      );
 }
