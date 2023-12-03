@@ -1,9 +1,9 @@
-import 'package:story_core/data/models/story_response_model.dart';
+import 'package:story_core/data/models/story_item_response_model.dart';
 
 class StoriesResponseModel {
   final bool? error;
   final String? message;
-  final List<StoryResponseModel>? listStory;
+  final List<StoryItemResponseModel>? listStory;
 
   const StoriesResponseModel({
     this.error,
@@ -14,9 +14,9 @@ class StoriesResponseModel {
   factory StoriesResponseModel.fromJson(Map<String, dynamic> json) => StoriesResponseModel(
         error: json["error"],
         message: json["message"],
-        listStory: List<StoryResponseModel>.from(
+        listStory: List<StoryItemResponseModel>.from(
           json["listStory"]!.map(
-            (x) => StoryResponseModel.fromJson(x),
+            (x) => StoryItemResponseModel.fromJson(x),
           ),
         ),
       );

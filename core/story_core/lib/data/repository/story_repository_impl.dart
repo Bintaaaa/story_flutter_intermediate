@@ -65,6 +65,7 @@ class StoryRepositoryImpl implements StoryRepository {
       final response = await storiesRemoteDatasource.getStory(
         id,
       );
+
       return Right(
         storyMapper.storyResponseModelToEntity(
           response,

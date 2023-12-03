@@ -34,6 +34,7 @@ class StoriesRemoteDatasourceImpl implements StoriesRemoteDatasource {
       final response = await dio.get(
         "${ConstansValue.network.stories}/$id",
       );
+
       return StoryResponseModel.fromJson(
         response.data,
       );
@@ -49,6 +50,7 @@ class StoriesRemoteDatasourceImpl implements StoriesRemoteDatasource {
         ConstansValue.network.stories,
         data: data.toFormData(),
       );
+
       return GeneralResponseModel.fromJson(
         response.data,
       );

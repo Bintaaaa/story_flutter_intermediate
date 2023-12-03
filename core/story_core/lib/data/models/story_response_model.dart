@@ -1,29 +1,21 @@
-class StoryResponseModel {
-  final String? id;
-  final String? name;
-  final String? description;
-  final String? photoUrl;
-  final String? createdAt;
-  final double? lat;
-  final double? lon;
+import 'package:story_core/data/models/story_item_response_model.dart';
 
-  StoryResponseModel({
-    this.id,
-    this.name,
-    this.description,
-    this.photoUrl,
-    this.createdAt,
-    this.lat,
-    this.lon,
+class StoryResponseModel {
+  final bool? error;
+  final String? message;
+  final StoryItemResponseModel? story;
+
+  const StoryResponseModel({
+    this.error,
+    this.message,
+    this.story,
   });
 
   factory StoryResponseModel.fromJson(Map<String, dynamic> json) => StoryResponseModel(
-        id: json["id"],
-        name: json["name"],
-        description: json["description"],
-        photoUrl: json["photoUrl"],
-        createdAt: json["createdAt"],
-        lat: json["lat"]?.toDouble(),
-        lon: json["lon"]?.toDouble(),
+        error: json["error"],
+        message: json["message"],
+        story: StoryItemResponseModel.fromJson(
+          json["story"],
+        ),
       );
 }

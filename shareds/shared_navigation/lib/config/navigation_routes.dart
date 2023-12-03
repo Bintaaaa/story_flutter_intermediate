@@ -78,7 +78,7 @@ class NavigationRoutes {
           )..getStory(
               state.pathParameters["id"]!,
             ),
-          child: const StoryDetailScreen(),
+          child: StoryDetailScreen(),
         ),
       ),
       GoRoute(

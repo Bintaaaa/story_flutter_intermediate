@@ -1,19 +1,13 @@
-class StoryResponseEntity {
-  final String id;
-  final String name;
-  final String description;
-  final String photoUrl;
-  final String createdAt;
-  final double lat;
-  final double lon;
+import 'package:story_core/data/models/story_item_response_model.dart';
 
-  StoryResponseEntity({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.photoUrl,
-    required this.createdAt,
-    required this.lat,
-    required this.lon,
+class StoryResponseEntity {
+  final bool error;
+  final String message;
+  final StoryItemResponseModel story;
+
+  const StoryResponseEntity({
+    required this.error,
+    required this.message,
+    required this.story,
   });
 }
