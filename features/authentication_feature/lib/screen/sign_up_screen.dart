@@ -3,7 +3,7 @@ import 'package:authentication_feature/bloc/sign_up/sign_up_state.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_common/constans/constans_values.dart';
 import 'package:shared_common/states/view_data_state.dart';
-import 'package:shared_component/button_filled_component.dart';
+import 'package:shared_component/button/button_filled_component.dart';
 import 'package:shared_component/text_field/text_field_component.dart';
 import 'package:shared_libraries/flutter_bloc/flutter_bloc.dart';
 import 'package:shared_libraries/go_router/go_router.dart';

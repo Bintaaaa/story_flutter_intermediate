@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:authentication_core/domain/usecases/get_token_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_common/constans/constans_values.dart';
@@ -16,12 +18,16 @@ class NavigationRedirect {
   });
 
   Future<String?> redirect() async {
-    String? path;
-    String currentPath = goRouterState.fullPath!;
     final resultLogin = await getTokenUseCase.call(
       const NoParams(),
     );
+    String? path;
+    String currentPath = goRouterState.fullPath!;
+    log("Now Current path $currentPath");
+
     resultLogin.fold((failure) {}, (data) {
+      log("Token User is $data");
+
       path = _guard(
         currentPath,
         data.isNotEmpty,
@@ -36,6 +42,7 @@ class NavigationRedirect {
     final List<String> needTokenLogin = [
       ConstansValue.routes.storiesPath,
       ConstansValue.routes.createStoriesPath,
+      ConstansValue.routes.storyPath,
     ];
     final List<String> unneededTokenLogin = [
       ConstansValue.routes.optionalAuthPath,
@@ -43,19 +50,23 @@ class NavigationRedirect {
       ConstansValue.routes.signUpPath,
     ];
     if (isLoggedIn) {
+      log("is Login");
       for (int i = 0; i < unneededTokenLogin.length; i++) {
-        if (currentPath == unneededTokenLogin[i] && isLoggedIn) {
+        if (currentPath == unneededTokenLogin[i]) {
+          log("is Login");
           path = ConstansValue.routes.storiesPath;
         }
       }
     } else {
+      log("is not Login");
+
       for (int i = 0; i < needTokenLogin.length; i++) {
         if (currentPath == needTokenLogin[i]) {
           path = ConstansValue.routes.optionalAuthPath;
           break;
         }
       }
-      return path;
     }
+    return path;
   }
 }

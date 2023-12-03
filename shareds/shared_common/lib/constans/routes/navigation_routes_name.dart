@@ -16,6 +16,12 @@ class NavigationRoutesName {
   String get storiesName => "listStory";
   String get storiesPath => "/stories/list";
 
+  String get storyName => "story";
+  String get storyPath => "/stories/detail/:id";
+
   String get createStoriesName => "createStory";
   String get createStoriesPath => "/stories/create";
+
+  String get profileName => "profileName";
+  String get profilePath => "/profile";
 }

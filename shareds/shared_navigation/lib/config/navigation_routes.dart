@@ -1,6 +1,7 @@
 import 'package:authentication_feature/bloc/sig_in/sign_in_cubit.dart';
 import 'package:authentication_feature/bloc/sign_up/sign_up_cubit.dart';
 import 'package:authentication_feature/screen/optional_authentication_screen.dart';
+import 'package:authentication_feature/screen/profile_screen.dart';
 import 'package:authentication_feature/screen/sign_in_screen.dart';
 import 'package:authentication_feature/screen/sign_up_screen.dart';
 import 'package:onboarding_feature/bloc/splash/splash_cubit.dart';
@@ -11,6 +12,7 @@ import 'package:shared_libraries/get_it/get_it.dart';
 import 'package:shared_libraries/go_router/go_router.dart';
 import 'package:story_features/screen/stories_screen.dart';
 import 'package:story_features/screen/story_create_screen.dart';
+import 'package:story_features/screen/story_detail_screen.dart';
 
 class NavigationRoutes {
   List<RouteBase> get routes => _routes();
@@ -58,9 +60,19 @@ class NavigationRoutes {
         builder: (context, state) => const StoriesScreen(),
       ),
       GoRoute(
+        path: ConstansValue.routes.storyPath,
+        name: ConstansValue.routes.storyName,
+        builder: (context, state) => const StoryDetailScreen(),
+      ),
+      GoRoute(
         path: ConstansValue.routes.createStoriesPath,
         name: ConstansValue.routes.createStoriesName,
         builder: (context, state) => const StoryCreateScreen(),
+      ),
+      GoRoute(
+        path: ConstansValue.routes.profilePath,
+        name: ConstansValue.routes.profileName,
+        builder: (context, state) => const ProfileScreen(),
       ),
     ];
   }

@@ -16,6 +16,10 @@ dependencies:
 
   shared_common:
     path: ../../shareds/shared_common
+  shared_component:
+    path: ../../shareds/shared_component
+  story_core:
+    path: ../../core/story_core
 
 dev_dependencies:
   flutter_test:

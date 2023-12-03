@@ -1,4 +1,4 @@
-# melos_managed_dependency_overrides: authentication_core,authentication_feature,onboarding_feature,shared_common,shared_component,shared_libraries,story_features
+# melos_managed_dependency_overrides: authentication_core,authentication_feature,onboarding_feature,shared_common,shared_component,shared_libraries,story_features,story_core
 dependency_overrides:
   authentication_core:
     path: ../../core/authentication_core
@@ -12,5 +12,7 @@ dependency_overrides:
     path: ../shared_component
   shared_libraries:
     path: ../shared_libraries
+  story_core:
+    path: ../../core/story_core
   story_features:
     path: ../../features/story_features
