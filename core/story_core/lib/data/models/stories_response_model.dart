@@ -15,7 +15,7 @@ class StoriesResponseModel {
         error: json["error"],
         message: json["message"],
         listStory: List<StoryItemResponseModel>.from(
-          json["listStory"]!.map(
+          json["listStory"].map(
             (x) => StoryItemResponseModel.fromJson(x),
           ),
         ),
