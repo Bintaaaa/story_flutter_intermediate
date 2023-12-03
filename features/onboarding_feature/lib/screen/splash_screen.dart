@@ -21,12 +21,15 @@ class SplashScreen extends StatelessWidget {
             );
           }
         },
-        child: SafeArea(
+        child: const SafeArea(
           child: Center(
-            child: TextButton(
-              onPressed: () {},
-              child: const Text(
-                "Splash Screen",
+            child: Text(
+              "Ini Cuman Splash Screen",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.green,
+                fontWeight: FontWeight.bold,
+                fontSize: 48.0,
               ),
             ),
           ),

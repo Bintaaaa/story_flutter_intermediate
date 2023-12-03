@@ -15,8 +15,17 @@ class OptionalAuthenticationScreen extends StatelessWidget {
           margin: const EdgeInsets.all(
             16.0,
           ),
-          child: ListView(
+          child: Column(
             children: [
+              const Text(
+                "Yuk Coba Aplikasi Dicoding Story Sekarang!",
+                style: TextStyle(
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 32.0,
+                ),
+              ),
+              const Spacer(),
               ButtonFilledComponent(
                 onPressed: () {
                   context.pushNamed(
@@ -24,6 +33,9 @@ class OptionalAuthenticationScreen extends StatelessWidget {
                   );
                 },
                 title: AppLocalizations.of(context)!.buttonLogin,
+              ),
+              const SizedBox.square(
+                dimension: 16.0,
               ),
               ButtonFilledComponent(
                 onPressed: () {
