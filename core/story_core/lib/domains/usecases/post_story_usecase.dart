@@ -15,17 +15,17 @@ class PostStoryUseCase extends UseCase<CreateStoryResponseEntity, CreateStoryBod
 
   @override
   Future<Either<FailureResponse, CreateStoryResponseEntity>> call(CreateStoryBodyEntity parameter) async {
-    if (parameter.description.isEmpty) {
+    if (parameter.file.isNull() && parameter.description.isEmpty) {
       return Left(
-        FailureResponse(errorMessage: "Isi dulu deskripsinya ya"),
+        FailureResponse(errorMessage: "Isi dulu semuanya ya"),
       );
-    } else if (parameter.photoBytes.isEmpty || parameter.photoBytes.isNull()) {
+    } else if (parameter.file.isNull()) {
       return Left(
         FailureResponse(errorMessage: "Isi dulu gambarnya ya"),
       );
-    } else if ((parameter.photoBytes.isEmpty || parameter.photoBytes.isNull()) || parameter.description.isEmpty) {
+    } else if (parameter.description.isEmpty) {
       return Left(
-        FailureResponse(errorMessage: "Isi dulu semuanya ya"),
+        FailureResponse(errorMessage: "Isi dulu deskripsinya ya"),
       );
     } else {
       return await storyRepository.createStory(

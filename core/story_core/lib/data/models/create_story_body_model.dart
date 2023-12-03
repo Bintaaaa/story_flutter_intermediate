@@ -2,26 +2,20 @@ import 'package:shared_libraries/dio/dio.dart';
 
 class CreateStoryBodyModel {
   final String description;
-  final List<int> photoBytes;
-  final double? latitude;
-  final double? longitude;
+  final String filePath;
 
   const CreateStoryBodyModel({
     required this.description,
-    required this.photoBytes,
-    this.latitude,
-    this.longitude,
+    required this.filePath,
   });
 
-  toFormData() => FormData.fromMap(
+  toFormData() async => FormData.fromMap(
         {
           "description": description,
-          "photo": MultipartFile.fromBytes(
-            photoBytes,
-            filename: 'temp_name.jpg',
+          "photo": await MultipartFile.fromFile(
+            filePath,
+            filename: "photo.jpg",
           ),
-          "lat": latitude,
-          "lon": longitude,
         },
       );
 }

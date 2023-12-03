@@ -1,4 +1,4 @@
-# melos_managed_dependency_overrides: shared_common,shared_libraries,shared_component,story_core
+# melos_managed_dependency_overrides: shared_common,shared_component,shared_libraries,story_core
 dependency_overrides:
   shared_common:
     path: ../../shareds/shared_common

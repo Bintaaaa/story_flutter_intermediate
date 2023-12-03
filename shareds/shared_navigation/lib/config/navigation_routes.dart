@@ -78,7 +78,7 @@ class NavigationRoutes {
           )..getStory(
               state.pathParameters["id"]!,
             ),
-          child: StoryDetailScreen(),
+          child: const StoryDetailScreen(),
         ),
       ),
       GoRoute(
@@ -90,7 +90,9 @@ class NavigationRoutes {
             getStoryUseCase: sl(),
             postStoryUseCase: sl(),
           ),
-          child: const StoryCreateScreen(),
+          child: StoryCreateScreen(
+            bloc: state.extra as StoryCubit,
+          ),
         ),
       ),
       GoRoute(

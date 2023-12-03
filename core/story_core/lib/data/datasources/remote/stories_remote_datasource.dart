@@ -48,7 +48,7 @@ class StoriesRemoteDatasourceImpl implements StoriesRemoteDatasource {
     try {
       final response = await dio.post(
         ConstansValue.network.stories,
-        data: data.toFormData(),
+        data: await data.toFormData(),
       );
 
       return GeneralResponseModel.fromJson(

@@ -57,7 +57,7 @@ class StoryMapper {
 
   CreateStoryBodyModel createStoryEntityToModel(CreateStoryBodyEntity data) => CreateStoryBodyModel(
         description: data.description,
-        photoBytes: data.photoBytes,
+        filePath: data.file!.path,
       );
 
   CreateStoryResponseEntity createStoryResponseModelToEntity(GeneralResponseModel data) => CreateStoryResponseEntity(

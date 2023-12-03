@@ -1,13 +1,14 @@
+import 'dart:developer';
+
 import 'package:shared_common/constans/constans_values.dart';
 import 'package:shared_common/network/network_interceptors.dart';
-import 'package:shared_common/utilities/utilitites_checking_value.dart';
 import 'package:shared_libraries/dio/dio.dart';
 import 'package:shared_libraries/shared_preferences/shared_preferences.dart';
 
 class NetworkConfiguration {
   final SharedPreferences sharedPreferences;
 
-  const NetworkConfiguration({
+  NetworkConfiguration({
     required this.sharedPreferences,
   });
 
@@ -25,9 +26,10 @@ class NetworkConfiguration {
     final token = sharedPreferences.getString(
       ConstansValue.keyStorage.tokenLogin,
     );
-    if (token.isNotNull() || token.isNotEmpty()) {
-      headers["Authorization"] = "Bearer $token";
-    }
+
+    log("Getting token $token");
+
+    headers["Authorization"] = "Bearer $token";
     headers['Content-Type'] = 'application/json';
     headers['Accept'] = 'application/json';
 
@@ -35,8 +37,7 @@ class NetworkConfiguration {
       ..baseUrl = ConstansValue.network.baseUrl
       ..connectTimeout = duration
       ..receiveTimeout = duration
-    ..headers = headers
-    ;
+      ..headers = headers;
 
     dio.interceptors.add(
       ApiInterceptor.dioLogger(),

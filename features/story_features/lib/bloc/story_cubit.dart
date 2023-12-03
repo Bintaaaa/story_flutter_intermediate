@@ -1,6 +1,10 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:shared_common/states/view_data_state.dart';
 import 'package:shared_common/usecase/usecase.dart';
 import 'package:shared_libraries/flutter_bloc/flutter_bloc.dart';
+import 'package:shared_libraries/image_picker/image_picker.dart';
 import 'package:story_core/domains/entities/create_story_body_entity.dart';
 import 'package:story_core/domains/usecases/get_stories_usecase.dart';
 import 'package:story_core/domains/usecases/get_story_usecase.dart';
@@ -21,10 +25,11 @@ class StoryCubit extends Cubit<StoryState> {
             stateStories: ViewData.initial(),
             stateStory: ViewData.initial(),
             stateCreateStory: ViewData.initial(),
+            stateImage: ViewData.initial(),
           ),
         );
 
-  void getStories() async {
+  Future<void> getStories() async {
     emit(
       state.copyWith(
         stateStories: ViewData.loading(),
@@ -60,7 +65,7 @@ class StoryCubit extends Cubit<StoryState> {
     });
   }
 
-  void getStory(String id) async {
+  Future<void> getStory(String id) async {
     emit(
       state.copyWith(
         stateStory: ViewData.loading(),
@@ -85,9 +90,8 @@ class StoryCubit extends Cubit<StoryState> {
     });
   }
 
-  void postStory(
+  Future<void> postStory(
     String description,
-    List<int> photoBytes,
   ) async {
     emit(
       state.copyWith(
@@ -97,7 +101,7 @@ class StoryCubit extends Cubit<StoryState> {
     final result = await postStoryUseCase.call(
       CreateStoryBodyEntity(
         description: description,
-        photoBytes: photoBytes,
+        file: state.stateImage.data,
       ),
     );
     result.fold(
@@ -116,5 +120,33 @@ class StoryCubit extends Cubit<StoryState> {
         ),
       );
     });
+  }
+
+  void getImage() async {
+    final isMacOS = defaultTargetPlatform == TargetPlatform.macOS;
+    final isLinux = defaultTargetPlatform == TargetPlatform.linux;
+    if (isMacOS || isLinux || kIsWeb) return;
+
+    try {
+      final ImagePicker imagePicker = ImagePicker();
+
+      final result = await imagePicker.pickImage(
+        source: ImageSource.camera,
+      );
+
+      emit(
+        state.copyWith(
+          stateImage: ViewData.loaded(
+            data: File(
+              result!.path,
+            ),
+          ),
+        ),
+      );
+    } catch (e) {
+      ViewData.error(
+        message: "Gagal mengambil gamber",
+      );
+    }
   }
 }

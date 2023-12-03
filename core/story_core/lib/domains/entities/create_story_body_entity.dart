@@ -1,9 +1,11 @@
+import 'dart:io';
+
 class CreateStoryBodyEntity {
   final String description;
-  final List<int> photoBytes;
+  final File? file;
 
   const CreateStoryBodyEntity({
     required this.description,
-    required this.photoBytes,
+    this.file,
   });
 }

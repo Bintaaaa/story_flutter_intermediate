@@ -15,7 +15,7 @@ class StoriesScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Selamat Datang!",
+          "Welcome!",
         ),
         automaticallyImplyLeading: false,
         actions: [
@@ -23,54 +23,71 @@ class StoriesScreen extends StatelessWidget {
             onPressed: () {
               context.pushNamed(ConstansValue.routes.profileName);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.settings,
             ),
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          final bloc = context.read<StoryCubit>();
+          context.pushNamed(
+            ConstansValue.routes.createStoriesName,
+            extra: bloc,
+          );
+        },
+        child: const Icon(
+          Icons.camera,
+        ),
+      ),
       body: SafeArea(
-        child: BlocBuilder<StoryCubit, StoryState>(
-          builder: (context, state) {
-            final status = state.stateStories.status;
-            if (status.isLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (status.isNoData) {
-              return Center(
-                child: Text(
-                  state.stateStories.message,
-                ),
-              );
-            } else if (status.isHasData) {
-              final data = state.stateStories.data!.listStory;
-              return ListView.builder(
-                itemCount: 3,
-                itemBuilder: (context, index) {
-                  return CardComponent(
-                    image: data[index].photoUrl,
-                    title: data[index].name,
-                    description: data[index].description,
-                    onTap: () {
-                      context.pushNamed(
-                        ConstansValue.routes.storyName,
-                        pathParameters: {
-                          "id": data[index].id,
-                        },
-                      );
-                    },
-                  );
-                },
-              );
-            } else {
-              return Center(
-                child: Text(
-                  state.stateStories.failure!.errorMessage ?? '',
-                ),
-              );
-            }
+        child: RefreshIndicator(
+          onRefresh: () async {
+            await context.read<StoryCubit>().getStories();
           },
+          child: BlocBuilder<StoryCubit, StoryState>(
+            builder: (context, state) {
+              final status = state.stateStories.status;
+              if (status.isLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (status.isNoData) {
+                return Center(
+                  child: Text(
+                    state.stateStories.message,
+                  ),
+                );
+              } else if (status.isHasData) {
+                final data = state.stateStories.data!.listStory;
+                return ListView.builder(
+                  itemCount: 3,
+                  itemBuilder: (context, index) {
+                    return CardComponent(
+                      image: data[index].photoUrl,
+                      title: data[index].name,
+                      description: data[index].description,
+                      onTap: () {
+                        context.pushNamed(
+                          ConstansValue.routes.storyName,
+                          pathParameters: {
+                            "id": data[index].id,
+                          },
+                        );
+                      },
+                    );
+                  },
+                );
+              } else {
+                return Center(
+                  child: Text(
+                    state.stateStories.failure!.errorMessage ?? '',
+                  ),
+                );
+              }
+            },
+          ),
         ),
       ),
     );
