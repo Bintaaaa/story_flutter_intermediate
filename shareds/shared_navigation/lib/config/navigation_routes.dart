@@ -10,6 +10,7 @@ import 'package:shared_common/constans/constans_values.dart';
 import 'package:shared_libraries/flutter_bloc/flutter_bloc.dart';
 import 'package:shared_libraries/get_it/get_it.dart';
 import 'package:shared_libraries/go_router/go_router.dart';
+import 'package:story_features/bloc/story_cubit.dart';
 import 'package:story_features/screen/stories_screen.dart';
 import 'package:story_features/screen/story_create_screen.dart';
 import 'package:story_features/screen/story_detail_screen.dart';
@@ -57,17 +58,40 @@ class NavigationRoutes {
       GoRoute(
         path: ConstansValue.routes.storiesPath,
         name: ConstansValue.routes.storiesName,
-        builder: (context, state) => const StoriesScreen(),
+        builder: (context, state) => BlocProvider<StoryCubit>(
+          create: (context) => StoryCubit(
+            getStoriesUseCase: sl(),
+            getStoryUseCase: sl(),
+            postStoryUseCase: sl(),
+          )..getStories(),
+          child: const StoriesScreen(),
+        ),
       ),
       GoRoute(
         path: ConstansValue.routes.storyPath,
         name: ConstansValue.routes.storyName,
-        builder: (context, state) => const StoryDetailScreen(),
+        builder: (context, state) => BlocProvider<StoryCubit>(
+          create: (context) => StoryCubit(
+            getStoriesUseCase: sl(),
+            getStoryUseCase: sl(),
+            postStoryUseCase: sl(),
+          )..getStory(
+              state.pathParameters["id"]!,
+            ),
+          child: const StoryDetailScreen(),
+        ),
       ),
       GoRoute(
         path: ConstansValue.routes.createStoriesPath,
         name: ConstansValue.routes.createStoriesName,
-        builder: (context, state) => const StoryCreateScreen(),
+        builder: (context, state) => BlocProvider<StoryCubit>(
+          create: (context) => StoryCubit(
+            getStoriesUseCase: sl(),
+            getStoryUseCase: sl(),
+            postStoryUseCase: sl(),
+          ),
+          child: const StoryCreateScreen(),
+        ),
       ),
       GoRoute(
         path: ConstansValue.routes.profilePath,

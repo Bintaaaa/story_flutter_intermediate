@@ -34,7 +34,9 @@ class NetworkConfiguration {
     dio.options
       ..baseUrl = ConstansValue.network.baseUrl
       ..connectTimeout = duration
-      ..receiveTimeout = duration;
+      ..receiveTimeout = duration
+    ..headers = headers
+    ;
 
     dio.interceptors.add(
       ApiInterceptor.dioLogger(),

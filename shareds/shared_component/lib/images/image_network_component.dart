@@ -16,15 +16,18 @@ class ImageNetworkComponent extends StatelessWidget {
         fit: BoxFit.cover,
         height: _height,
         width: double.infinity,
-        loadingBuilder: (context, err, track) => Container(
-          width: double.maxFinite,
-          height: _height,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12.0),
-            color: Colors.grey,
-          ),
-          child: const Center(child: CircularProgressIndicator()),
-        ),
+        loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+          if (loadingProgress == null) {
+            return child;
+          }
+          return Center(
+            child: CircularProgressIndicator(
+              value: loadingProgress.expectedTotalBytes != null
+                  ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                  : null,
+            ),
+          );
+        },
         errorBuilder: (context, err, track) => Container(
           width: double.maxFinite,
           height: _height,
