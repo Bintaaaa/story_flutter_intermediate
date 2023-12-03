@@ -1,8 +1,8 @@
-import 'package:authentication_core/data/models/general_response_model.dart';
 import 'package:authentication_core/data/models/register_body_model.dart';
 import 'package:authentication_core/data/models/sign_in_body_model.dart';
 import 'package:authentication_core/data/models/sign_in_response_model.dart';
 import 'package:shared_common/constans/constans_values.dart';
+import 'package:shared_common/models/general_response_model.dart';
 import 'package:shared_libraries/dio/dio.dart';
 
 abstract class AuthenticationRemoteDatasource {
