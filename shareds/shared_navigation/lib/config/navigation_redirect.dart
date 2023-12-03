@@ -42,17 +42,20 @@ class NavigationRedirect {
       ConstansValue.routes.signInPath,
       ConstansValue.routes.signUpPath,
     ];
-    for (int i = 0; i < needTokenLogin.length; i++) {
-      if (currentPath == needTokenLogin[i] && !isLoggedIn) {
-        path = ConstansValue.routes.optionalAuthPath;
-        break;
+    if (isLoggedIn) {
+      for (int i = 0; i < unneededTokenLogin.length; i++) {
+        if (currentPath == unneededTokenLogin[i] && isLoggedIn) {
+          path = ConstansValue.routes.storiesPath;
+        }
       }
-    }
-    for (int i = 0; i < unneededTokenLogin.length; i++) {
-      if (currentPath == unneededTokenLogin[i] && isLoggedIn) {
-        path = ConstansValue.routes.storiesPath;
+    } else {
+      for (int i = 0; i < needTokenLogin.length; i++) {
+        if (currentPath == needTokenLogin[i]) {
+          path = ConstansValue.routes.optionalAuthPath;
+          break;
+        }
       }
+      return path;
     }
-    return path;
   }
 }
