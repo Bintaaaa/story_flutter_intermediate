@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_common/constans/constans_values.dart';
 import 'package:shared_libraries/go_router/go_router.dart';
 
-class StoriesScreen extends StatelessWidget {
-  const StoriesScreen({super.key});
+class StoryCreateScreen extends StatelessWidget {
+  const StoryCreateScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class StoriesScreen extends StatelessWidget {
             );
           },
           child: Text(
-            "story",
+            "Make A Story",
           ),
         ),
       ),

@@ -10,6 +10,7 @@ import 'package:shared_libraries/flutter_bloc/flutter_bloc.dart';
 import 'package:shared_libraries/get_it/get_it.dart';
 import 'package:shared_libraries/go_router/go_router.dart';
 import 'package:story_features/screen/stories_screen.dart';
+import 'package:story_features/screen/story_create_screen.dart';
 
 class NavigationRoutes {
   List<RouteBase> get routes => _routes();
@@ -55,6 +56,11 @@ class NavigationRoutes {
         path: ConstansValue.routes.storiesPath,
         name: ConstansValue.routes.storiesName,
         builder: (context, state) => const StoriesScreen(),
+      ),
+      GoRoute(
+        path: ConstansValue.routes.createStoriesPath,
+        name: ConstansValue.routes.createStoriesName,
+        builder: (context, state) => const StoryCreateScreen(),
       ),
     ];
   }
