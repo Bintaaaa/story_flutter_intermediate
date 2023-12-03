@@ -9,7 +9,7 @@ class SharedCommonInjection {
 
   _networkInjection() {
     sl.registerLazySingleton<Dio>(
-      () => sl<NetworkConfiguration>().network,
+      () => sl<NetworkConfiguration>().dio,
     );
     sl.registerLazySingleton<NetworkConfiguration>(
       () => NetworkConfiguration(

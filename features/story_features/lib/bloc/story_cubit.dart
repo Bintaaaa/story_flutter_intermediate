@@ -28,7 +28,6 @@ class StoryCubit extends Cubit<StoryState> {
             stateImage: ViewData.initial(),
           ),
         );
-
   Future<void> getStories() async {
     emit(
       state.copyWith(

@@ -31,7 +31,7 @@ class FailureResponse extends Equatable {
         errorMessage = "Unknown Error";
         break;
       default:
-        errorMessage;
+        errorMessage ??= dioException?.response?.data["message"];
         break;
     }
   }
