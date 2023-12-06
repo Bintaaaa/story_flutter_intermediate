@@ -81,6 +81,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   TextFieldComponent(
                     controller: passwordController,
+                    isObscureText: true,
                     label: "Password",
                   ),
                   const SizedBox.square(

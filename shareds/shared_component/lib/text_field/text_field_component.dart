@@ -4,11 +4,13 @@ class TextFieldComponent extends StatelessWidget {
   final TextEditingController controller;
   final String label;
   final int maxLines;
+  final bool isObscureText;
 
   const TextFieldComponent({
     super.key,
     required this.controller,
     required this.label,
+    this.isObscureText = false,
     this.maxLines = 1,
   });
 
@@ -16,7 +18,7 @@ class TextFieldComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
-      obscureText: false,
+      obscureText: isObscureText,
       maxLines: maxLines,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(

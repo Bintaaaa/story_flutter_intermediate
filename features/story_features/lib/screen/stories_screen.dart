@@ -63,7 +63,7 @@ class StoriesScreen extends StatelessWidget {
               } else if (status.isHasData) {
                 final data = state.stateStories.data!.listStory;
                 return ListView.builder(
-                  itemCount: 3,
+                  itemCount: data.length,
                   itemBuilder: (context, index) {
                     return CardComponent(
                       image: data[index].photoUrl,

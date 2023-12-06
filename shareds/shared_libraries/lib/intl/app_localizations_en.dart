@@ -26,17 +26,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get buttonPost => 'Post Status Now!';
 
   @override
-  String get takeApicture => 'Take a Snap';
-
-  @override
   String get description => 'Description';
 
   @override
-  String get openSettings => 'Change Language?';
+  String get takeApicture => 'Click, Take a picture';
 
   @override
-  String get open => "Open";
+  String get openSettings => 'Change language?';
 
   @override
-  String get logout => "Logout";
+  String get open => 'Open';
+
+  @override
+  String get logout => 'Logout';
 }

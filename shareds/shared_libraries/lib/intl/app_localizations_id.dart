@@ -26,17 +26,17 @@ class AppLocalizationsId extends AppLocalizations {
   String get buttonPost => 'Pasang Status Sekarang!';
 
   @override
-  String get takeApicture => 'Ambil Gambar';
-
-  @override
   String get description => 'Deskripsi';
 
   @override
-  String get openSettings => 'Ganti Bahasa?';
+  String get takeApicture => 'Tekan, untuk ambil gambar';
 
   @override
-  String get open => "Buka";
+  String get openSettings => 'Ganti bahasa?';
 
   @override
-  String get logout => "Keluar akun";
+  String get open => 'Buka';
+
+  @override
+  String get logout => 'Keluar Akun';
 }

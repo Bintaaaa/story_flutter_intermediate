@@ -66,7 +66,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 );
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
               } else if (status.isHasData) {
-                context.pushReplacementNamed(
+                context.goNamed(
                   ConstansValue.routes.storiesName,
                 );
               }
@@ -84,6 +84,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   TextFieldComponent(
                     controller: passwordController,
+                    isObscureText: true,
                     label: "password",
                   ),
                   const SizedBox.square(
