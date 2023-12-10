@@ -8,8 +8,25 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  dartz: ^0.10.1
+  dio: ^5.3.4
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.3
+  get_it: ^7.6.4
+  go_router: ^12.1.1
+  image: ^4.1.3
+  image_picker:
+  pretty_dio_logger: ^1.3.1
+  shared_preferences: ^2.2.2
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.18.1
+  flutter_localized_locales: ^2.0.5
+  app_settings: ^5.1.1
+
+
 
 dev_dependencies:
   flutter_test:
@@ -21,6 +38,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
 
   # To add assets to your package, add an assets section, like this:
   # assets:

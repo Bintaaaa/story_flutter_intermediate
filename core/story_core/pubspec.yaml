@@ -1,6 +1,7 @@
 name: story_core
 description: A new Flutter package project.
 version: 0.0.1
+publish_to: "none"
 homepage:
 
 environment:
@@ -10,6 +11,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  shared_libraries:
+    path: ../../shareds/shared_libraries
+  shared_common:
+    path: ../../shareds/shared_common
 
 dev_dependencies:
   flutter_test:

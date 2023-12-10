@@ -1,0 +1,14 @@
+{
+    "homeAppBar": "Selamat datang!",
+    "detailAppBar": "Rincian Status",
+    "createAppBar": "Buat Status",
+    "settingsAppBar": "Pengaturan",
+    "buttonLogin": "Masuk",
+    "buttonRegister": "Daftar",
+    "buttonPost": "Pasang Status Sekarang!",
+    "description": "Deskripsi",
+    "takeApicture": "Tekan, untuk ambil gambar",
+    "openSettings": "Ganti bahasa?",
+    "open": "Buka",
+    "logout": "Keluar Akun"
+}

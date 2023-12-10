@@ -1,0 +1,14 @@
+{
+  "homeAppBar": "Welcome!",
+  "detailAppBar": "Status Details",
+  "createAppBar": "Create Status",
+  "settingsAppBar": "Settings",
+  "buttonLogin": "Log In",
+  "buttonRegister": "Register",
+  "buttonPost": "Post Status Now!",
+   "description": "Description",
+      "takeApicture": "Click, Take a picture",
+      "openSettings": "Change language?",
+      "open": "Open",
+      "logout": "Logout"
+}

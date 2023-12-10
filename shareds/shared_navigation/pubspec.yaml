@@ -1,6 +1,7 @@
 name: shared_navigation
 description: A new Flutter package project.
 version: 0.0.1
+publish_to: 'none'
 homepage:
 
 environment:
@@ -10,6 +11,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  shared_libraries:
+    path: ../shared_libraries
+  authentication_core:
+    path: ../../core/authentication_core
+  onboarding_feature:
+    path: ../../features/onboarding_feature
+  authentication_feature:
+    path: ../../features/authentication_feature
+  story_features:
+    path: ../../features/story_features
+  shared_common:
+    path: ../../shareds/shared_common
 
 dev_dependencies:
   flutter_test:

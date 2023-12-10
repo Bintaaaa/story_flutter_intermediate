@@ -1,0 +1,7 @@
+arb-dir: shareds/shared_libraries/lib/l10n
+template-arb-file: app_id.arb
+
+synthetic-package: false
+
+output-dir: shareds/shared_libraries/lib/intl
+output-localization-file: app_localizations.dart
