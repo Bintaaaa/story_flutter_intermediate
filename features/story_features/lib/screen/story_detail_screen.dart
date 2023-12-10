@@ -72,7 +72,7 @@ class StoryDetailScreen extends StatelessWidget {
             } else {
               return Center(
                 child: Text(
-                  state.stateStory.failure!.errorMessage ?? '',
+                  state.stateStory.message,
                 ),
               );
             }
