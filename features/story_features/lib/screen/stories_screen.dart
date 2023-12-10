@@ -63,7 +63,16 @@ class _StoriesScreenState extends State<StoriesScreen> {
           onRefresh: () async {
             await context.read<StoryCubit>().getStories();
           },
-          child: BlocBuilder<StoryCubit, StoryState>(
+          child: BlocConsumer<StoryCubit, StoryState>(
+            listener: (context, state) {
+              final String? message = state.stateStories.data?.message;
+              if (message!.isNotEmpty) {
+                final snackBar = SnackBar(
+                  content: Text(message),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              }
+            },
             builder: (context, state) {
               final status = state.stateStories.status;
               if (status.isLoading) {
@@ -77,10 +86,10 @@ class _StoriesScreenState extends State<StoriesScreen> {
                   ),
                 );
               } else if (status.isHasData) {
-                final data = state.stateStories.data!;
+                final data = state.stateStories.data?.listStories;
                 return ListView.builder(
                   controller: scrollController,
-                  itemCount: data.length + 1,
+                  itemCount: data!.length + 1,
                   itemBuilder: (context, index) {
                     if (index < data.length) {
                       return CardComponent(

@@ -1,10 +1,11 @@
 import 'package:shared_common/error/failure_response.dart';
 import 'package:shared_common/usecase/usecase.dart';
 import 'package:shared_libraries/dartz/dartz.dart';
+import 'package:story_core/domains/entities/stories_entity.dart';
 import 'package:story_core/domains/entities/story_item_response_entity.dart';
 import 'package:story_core/domains/repository/story_repository.dart';
 
-class GetStoriesUseCase extends UseCase<List<StoryItemResponseEntity>, int> {
+class GetStoriesUseCase extends UseCase<StoriesEntity, int> {
   final StoryRepository storyRepository;
   int page = 1;
   List<StoryItemResponseEntity> newEntity = [];
@@ -14,13 +15,12 @@ class GetStoriesUseCase extends UseCase<List<StoryItemResponseEntity>, int> {
   });
 
   @override
-  Future<Either<FailureResponse, List<StoryItemResponseEntity>>> call(int parameter) async {
+  Future<Either<FailureResponse, StoriesEntity>> call(int parameter) async {
     page = parameter == 1
         ? 1
         : parameter == 0
             ? page
             : parameter;
-    print("ini adalah nilai dari $page");
     final result = await storyRepository.getStories(
       page: page,
     );
@@ -34,7 +34,10 @@ class GetStoriesUseCase extends UseCase<List<StoryItemResponseEntity>, int> {
         newEntity.addAll(data);
         page++;
         return Right(
-          newEntity,
+          StoriesEntity(
+            listStories: newEntity,
+            message: data.isEmpty ? "Data sudah ditampilkan semua" : "",
+          ),
         );
       },
     );

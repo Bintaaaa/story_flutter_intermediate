@@ -47,7 +47,7 @@ class StoryCubit extends Cubit<StoryState> {
                 ),
               ),
             ), (data) {
-      if (data.isEmpty) {
+      if (data.listStories.isEmpty) {
         emit(
           state.copyWith(
             stateStories: ViewData.noData(
@@ -58,9 +58,10 @@ class StoryCubit extends Cubit<StoryState> {
       } else {
         emit(
           state.copyWith(
-              stateStories: ViewData.loaded(
-            data: data,
-          )),
+            stateStories: ViewData.loaded(
+              data: data,
+            ),
+          ),
         );
       }
     });
