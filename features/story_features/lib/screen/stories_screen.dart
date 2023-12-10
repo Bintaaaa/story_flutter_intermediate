@@ -66,11 +66,14 @@ class _StoriesScreenState extends State<StoriesScreen> {
           child: BlocConsumer<StoryCubit, StoryState>(
             listener: (context, state) {
               final String? message = state.stateStories.data?.message;
-              if (message!.isNotEmpty) {
-                final snackBar = SnackBar(
-                  content: Text(message),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              final status = state.stateStories.status;
+              if (status.isHasData) {
+                if (message!.isNotEmpty) {
+                  final snackBar = SnackBar(
+                    content: Text(message),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                }
               }
             },
             builder: (context, state) {
