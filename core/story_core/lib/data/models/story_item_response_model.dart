@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'story_item_response_model.g.dart';
+
+@JsonSerializable()
 class StoryItemResponseModel {
   final String? id;
   final String? name;
@@ -17,13 +22,5 @@ class StoryItemResponseModel {
     this.lon,
   });
 
-  factory StoryItemResponseModel.fromJson(Map<String, dynamic> json) => StoryItemResponseModel(
-        id: json["id"],
-        name: json["name"],
-        description: json["description"],
-        photoUrl: json["photoUrl"],
-        createdAt: json["createdAt"],
-        lat: json["lat"]?.toDouble(),
-        lon: json["lon"]?.toDouble(),
-      );
+  factory StoryItemResponseModel.fromJson(Map<String, dynamic> json) => _$StoryItemResponseModelFromJson(json);
 }

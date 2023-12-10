@@ -9,7 +9,7 @@ class CreateStoryBodyModel {
     required this.filePath,
   });
 
-  toFormData() async => FormData.fromMap(
+  Future<FormData> toFormData() async => FormData.fromMap(
         {
           "description": description,
           "photo": await MultipartFile.fromFile(

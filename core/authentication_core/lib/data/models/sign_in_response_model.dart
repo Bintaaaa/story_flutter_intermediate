@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'sign_in_response_model.g.dart';
+
+@JsonSerializable()
 class SignInResponseModel {
   final bool? error;
   final String? message;
@@ -9,15 +14,10 @@ class SignInResponseModel {
     this.loginResult,
   });
 
-  factory SignInResponseModel.fromJson(Map<String, dynamic> json) => SignInResponseModel(
-        error: json["error"],
-        message: json["message"],
-        loginResult: SignInResultResponseModel.fromJson(
-          json["loginResult"],
-        ),
-      );
+  factory SignInResponseModel.fromJson(Map<String, dynamic> json) => _$SignInResponseModelFromJson(json);
 }
 
+@JsonSerializable()
 class SignInResultResponseModel {
   final String? userId;
   final String? name;
@@ -29,9 +29,5 @@ class SignInResultResponseModel {
     this.token,
   });
 
-  factory SignInResultResponseModel.fromJson(Map<String, dynamic> json) => SignInResultResponseModel(
-        userId: json["userId"],
-        name: json["name"],
-        token: json["token"],
-      );
+  factory SignInResultResponseModel.fromJson(Map<String, dynamic> json) => _$SignInResultResponseModelFromJson(json);
 }
