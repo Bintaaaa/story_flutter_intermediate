@@ -1,24 +1,15 @@
 import 'package:shared_common/models/general_response_model.dart';
 import 'package:story_core/data/models/create_story_body_model.dart';
-import 'package:story_core/data/models/stories_response_model.dart';
 import 'package:story_core/data/models/story_item_response_model.dart';
 import 'package:story_core/data/models/story_response_model.dart';
 import 'package:story_core/domains/entities/create_story_body_entity.dart';
 import 'package:story_core/domains/entities/create_story_response_entity.dart';
-import 'package:story_core/domains/entities/stories_response_entity.dart';
 import 'package:story_core/domains/entities/story_item_response_entity.dart';
 import 'package:story_core/domains/entities/story_response_entity.dart';
 
 class StoryMapper {
   const StoryMapper();
 
-  StoriesResponseEntity storiesResponseModelToEntity(StoriesResponseModel data) => StoriesResponseEntity(
-        error: data.error ?? true,
-        message: data.message ?? "Error",
-        listStory: storiesListResponseModelToEntity(
-          data.listStory ?? [],
-        ),
-      );
   List<StoryItemResponseEntity> storiesListResponseModelToEntity(List<StoryItemResponseModel> data) {
     List<StoryItemResponseEntity> newData = [];
     for (var element in data) {

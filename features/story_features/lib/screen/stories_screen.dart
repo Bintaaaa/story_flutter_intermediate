@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_common/constans/constans_values.dart';
 import 'package:shared_common/states/view_data_state.dart';
@@ -8,8 +9,23 @@ import 'package:shared_libraries/intl/app_localizations.dart';
 import 'package:story_features/bloc/story_cubit.dart';
 import 'package:story_features/bloc/story_state.dart';
 
-class StoriesScreen extends StatelessWidget {
+class StoriesScreen extends StatefulWidget {
   const StoriesScreen({super.key});
+
+  @override
+  State<StoriesScreen> createState() => _StoriesScreenState();
+}
+
+class _StoriesScreenState extends State<StoriesScreen> {
+  ScrollController scrollController = ScrollController();
+  void initState() {
+    super.initState();
+    scrollController.addListener(() {
+      if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+        context.read<StoryCubit>().getLazyStories();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,23 +77,28 @@ class StoriesScreen extends StatelessWidget {
                   ),
                 );
               } else if (status.isHasData) {
-                final data = state.stateStories.data!.listStory;
+                final data = state.stateStories.data!;
                 return ListView.builder(
-                  itemCount: data.length,
+                  controller: scrollController,
+                  itemCount: data.length + 1,
                   itemBuilder: (context, index) {
-                    return CardComponent(
-                      image: data[index].photoUrl,
-                      title: data[index].name,
-                      description: data[index].description,
-                      onTap: () {
-                        context.pushNamed(
-                          ConstansValue.routes.storyName,
-                          pathParameters: {
-                            "id": data[index].id,
-                          },
-                        );
-                      },
-                    );
+                    if (index < data.length) {
+                      return CardComponent(
+                        image: data[index].photoUrl,
+                        title: data[index].name,
+                        description: data[index].description,
+                        onTap: () {
+                          context.pushNamed(
+                            ConstansValue.routes.storyName,
+                            pathParameters: {
+                              "id": data[index].id,
+                            },
+                          );
+                        },
+                      );
+                    } else {
+                      return const CupertinoActivityIndicator();
+                    }
                   },
                 );
               } else {

@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:shared_common/states/view_data_state.dart';
-import 'package:shared_common/usecase/usecase.dart';
 import 'package:shared_libraries/flutter_bloc/flutter_bloc.dart';
 import 'package:shared_libraries/image_picker/image_picker.dart';
 import 'package:story_core/domains/entities/create_story_body_entity.dart';
@@ -28,15 +27,18 @@ class StoryCubit extends Cubit<StoryState> {
             stateImage: ViewData.initial(),
           ),
         );
+
   Future<void> getStories() async {
     emit(
       state.copyWith(
         stateStories: ViewData.loading(),
       ),
     );
-    final result = await getStoriesUseCase.call(
-      const NoParams(),
-    );
+    getLazyStories(page: 1);
+  }
+
+  Future<void> getLazyStories({int? page = 0}) async {
+    final result = await getStoriesUseCase.call(page!);
     result.fold(
         (failure) => emit(
               state.copyWith(
@@ -45,7 +47,7 @@ class StoryCubit extends Cubit<StoryState> {
                 ),
               ),
             ), (data) {
-      if (data.listStory.isEmpty) {
+      if (data.isEmpty) {
         emit(
           state.copyWith(
             stateStories: ViewData.noData(

@@ -5,7 +5,7 @@ import 'package:story_core/data/datasources/remote/stories_remote_datasource.dar
 import 'package:story_core/data/mapper/story_mapper.dart';
 import 'package:story_core/domains/entities/create_story_body_entity.dart';
 import 'package:story_core/domains/entities/create_story_response_entity.dart';
-import 'package:story_core/domains/entities/stories_response_entity.dart';
+import 'package:story_core/domains/entities/story_item_response_entity.dart';
 import 'package:story_core/domains/entities/story_response_entity.dart';
 import 'package:story_core/domains/repository/story_repository.dart';
 
@@ -41,13 +41,15 @@ class StoryRepositoryImpl implements StoryRepository {
   }
 
   @override
-  Future<Either<FailureResponse, StoriesResponseEntity>> getStories() async {
+  Future<Either<FailureResponse, List<StoryItemResponseEntity>>> getStories({int page = 1}) async {
     try {
-      final response = await storiesRemoteDatasource.getStories();
+      final response = await storiesRemoteDatasource.getStories(
+        page: page,
+      );
 
       return Right(
-        storyMapper.storiesResponseModelToEntity(
-          response,
+        storyMapper.storiesListResponseModelToEntity(
+          response.listStory!,
         ),
       );
     } on DioException catch (error) {
