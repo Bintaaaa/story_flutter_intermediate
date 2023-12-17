@@ -33,7 +33,8 @@ class _StoryDetailScreenState extends State<StoryDetailScreen> {
             final status = state.stateStory.status;
             if (status.isHasData) {
               setState(() {
-                height = 600.0; // Set the target height for the bounce animation
+                height =
+                    600.0; // Set the target height for the bounce animation
               });
               Future.delayed(const Duration(milliseconds: 200), () {
                 setState(

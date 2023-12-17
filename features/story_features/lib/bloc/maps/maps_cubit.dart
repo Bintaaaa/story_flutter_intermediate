@@ -1,7 +1,7 @@
 import 'package:shared_common/states/view_data_state.dart';
 import 'package:shared_common/utilities/utilitites_checking_value.dart';
 import 'package:shared_libraries/flutter_bloc/flutter_bloc.dart';
-import 'package:shared_libraries/get_it/geocoding.dart' as geo;
+import 'package:shared_libraries/geocoding/geocoding.dart' as geo;
 import 'package:shared_libraries/google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_libraries/location/location.dart';
 import 'package:story_features/bloc/maps/maps_state.dart';
@@ -53,11 +53,9 @@ class MapsCubit extends Cubit<MapsState> {
 
     try {
       permissionGranted = await location.hasPermission();
-      if (permissionGranted == PermissionStatus.denied ||
-          permissionGranted == PermissionStatus.deniedForever) {
+      if (permissionGranted == PermissionStatus.denied || permissionGranted == PermissionStatus.deniedForever) {
         permissionGranted = await location.requestPermission();
-        if (permissionGranted == PermissionStatus.denied ||
-            permissionGranted == PermissionStatus.deniedForever) {
+        if (permissionGranted == PermissionStatus.denied || permissionGranted == PermissionStatus.deniedForever) {
           emit(
             state.copyWith(
               permissionState: ViewData.loaded(

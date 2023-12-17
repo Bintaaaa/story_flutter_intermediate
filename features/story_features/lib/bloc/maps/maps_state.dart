@@ -1,6 +1,6 @@
 import 'package:shared_common/states/view_data_state.dart';
 import 'package:shared_libraries/equatable/equatable.dart';
-import 'package:shared_libraries/get_it/geocoding.dart';
+import 'package:shared_libraries/geocoding/geocoding.dart';
 import 'package:shared_libraries/google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_libraries/location/location.dart';
 

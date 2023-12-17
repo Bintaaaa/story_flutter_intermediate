@@ -82,7 +82,8 @@ class _StoryCreateScreenState extends State<StoryCreateScreen> {
                               ),
                             )
                           : Center(
-                              child: Text(AppLocalizations.of(context)!.takeApicture),
+                              child: Text(
+                                  AppLocalizations.of(context)!.takeApicture),
                             ),
                     );
                   },
