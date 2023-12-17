@@ -14,6 +14,7 @@ class MapsCubit extends Cubit<MapsState> {
             permissionState: ViewData.initial(),
             picMyCoordinateState: ViewData.initial(),
             setMarkerState: ViewData.loaded(data: {}),
+            latLngState: ViewData.initial(),
           ),
         );
 
@@ -168,8 +169,19 @@ class MapsCubit extends Cubit<MapsState> {
         ),
       ),
     );
+    getLatLng(latLng);
     getAddressByCoordinate(
       latLng: latLng,
+    );
+  }
+
+  getLatLng(LatLng latLng) {
+    emit(
+      state.copyWith(
+        latLngState: ViewData.loaded(
+          data: latLng,
+        ),
+      ),
     );
   }
 }

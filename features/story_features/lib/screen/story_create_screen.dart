@@ -7,6 +7,7 @@ import 'package:shared_libraries/flutter_bloc/flutter_bloc.dart';
 import 'package:shared_libraries/go_router/go_router.dart';
 import 'package:shared_libraries/intl/app_localizations.dart';
 import 'package:story_features/bloc/maps/maps_cubit.dart';
+import 'package:story_features/bloc/maps/maps_state.dart';
 import 'package:story_features/bloc/story_cubit.dart';
 import 'package:story_features/bloc/story_state.dart';
 
@@ -37,6 +38,7 @@ class _StoryCreateScreenState extends State<StoryCreateScreen> {
         onPressed: () {
           context.pushNamed(
             ConstansValue.routes.storyMapsName,
+            extra: mapsCubit,
           );
         },
         child: const Icon(
@@ -92,12 +94,73 @@ class _StoryCreateScreenState extends State<StoryCreateScreen> {
                 maxLines: 3,
               ),
               const SizedBox.square(
-                dimension: 54.0,
+                dimension: 16.0,
+              ),
+              BlocBuilder<MapsCubit, MapsState>(
+                bloc: mapsCubit,
+                builder: (context, state) {
+                  final dataAddress = state.picMyCoordinateState.data;
+                  if (state.latLngState.data != null) {
+                    return Container(
+                      padding: const EdgeInsets.all(
+                        8.0,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          12.0,
+                        ),
+                        border: Border.all(
+                          color: Colors.amber,
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Wrap(
+                            spacing: 8.0,
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.info_outline,
+                                color: Colors.amber,
+                              ),
+                              Text(
+                                "Data lokasi Anda sudah diambil",
+                                style: TextStyle(
+                                  color: Colors.amber,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox.square(dimension: 8.0),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 32.0,
+                            ),
+                            child: Text(
+                              "${dataAddress![0].street}, ${dataAddress[0].administrativeArea}, ${dataAddress[0].country}, ${dataAddress[0].postalCode}",
+                              style: const TextStyle(
+                                fontSize: 14.0,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              maxLines: 3,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  } else {
+                    return const SizedBox();
+                  }
+                },
+              ),
+              const SizedBox.square(
+                dimension: 16.0,
               ),
               BlocConsumer<StoryCubit, StoryState>(
                 listener: (context, state) async {
                   final status = state.stateCreateStory.status;
-
                   if (status.isError) {
                     final errorMessage = state.stateCreateStory.message;
                     final snackBar = SnackBar(
@@ -116,14 +179,15 @@ class _StoryCreateScreenState extends State<StoryCreateScreen> {
                   return ButtonFilledComponent(
                     onPressed: () {
                       context.read<StoryCubit>().postStory(
-                            descriptionController.text,
+                            description: descriptionController.text,
+                            latLng: mapsCubit.state.latLngState.data,
                           );
                     },
                     isLoading: status.isLoading,
                     title: AppLocalizations.of(context)!.buttonPost,
                   );
                 },
-              )
+              ),
             ],
           ),
         ),

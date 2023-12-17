@@ -4,12 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:shared_common/states/view_data_state.dart';
 import 'package:shared_component/button/button_filled_component.dart';
 import 'package:shared_libraries/flutter_bloc/flutter_bloc.dart';
+import 'package:shared_libraries/go_router/go_router.dart';
 import 'package:shared_libraries/google_maps_flutter/google_maps_flutter.dart';
 import 'package:story_features/bloc/maps/maps_cubit.dart';
 import 'package:story_features/bloc/maps/maps_state.dart';
 
 class StoryMapsScreen extends StatefulWidget {
-  const StoryMapsScreen({super.key});
+  const StoryMapsScreen({
+    super.key,
+    required this.mapsCubit,
+  });
+
+  final MapsCubit mapsCubit;
 
   @override
   State<StoryMapsScreen> createState() => _StoryMapsScreenState();
@@ -17,6 +23,12 @@ class StoryMapsScreen extends StatefulWidget {
 
 class _StoryMapsScreenState extends State<StoryMapsScreen> {
   late GoogleMapController mapController;
+
+  @override
+  void dispose() {
+    super.dispose();
+    mapController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,6 +114,7 @@ class _StoryMapsScreenState extends State<StoryMapsScreen> {
               );
             } else if (status.isHasData) {
               final data = state.picMyCoordinateState.data;
+              final dataLatLong = state.latLngState.data;
               return Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -127,11 +140,17 @@ class _StoryMapsScreenState extends State<StoryMapsScreen> {
                   ),
                   ButtonFilledComponent(
                     title: "Pilih",
-                    onPressed: () {},
+                    onPressed: () {
+                      widget.mapsCubit.getCoordinateByMark(
+                        dataLatLong!,
+                        mapController,
+                      );
+                      context.pop(context);
+                    },
                   )
                 ],
               );
-            } else {
+            } else if (status.isError) {
               final message = state.picMyCoordinateState.message;
               return Column(
                 children: [
@@ -146,6 +165,8 @@ class _StoryMapsScreenState extends State<StoryMapsScreen> {
                   )
                 ],
               );
+            } else {
+              return const SizedBox();
             }
           },
         ),

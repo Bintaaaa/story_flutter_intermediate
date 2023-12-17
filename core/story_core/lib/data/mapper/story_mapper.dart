@@ -48,6 +48,8 @@ class StoryMapper {
 
   CreateStoryBodyModel createStoryEntityToModel(CreateStoryBodyEntity data) => CreateStoryBodyModel(
         description: data.description,
+        lat: data.lat,
+        lng: data.lng,
         filePath: data.file!.path,
       );
 

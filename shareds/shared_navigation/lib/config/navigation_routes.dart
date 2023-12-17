@@ -126,7 +126,9 @@ class NavigationRoutes {
                 ..getMyCurrentLocation(),
             ),
           ],
-          child: const StoryMapsScreen(),
+          child: StoryMapsScreen(
+            mapsCubit: state.extra as MapsCubit,
+          ),
         ),
       ),
     ];
