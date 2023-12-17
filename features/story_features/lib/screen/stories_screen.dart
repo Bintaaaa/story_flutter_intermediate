@@ -23,7 +23,8 @@ class _StoriesScreenState extends State<StoriesScreen> {
   void initState() {
     super.initState();
     scrollController.addListener(() {
-      if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+      if (scrollController.position.pixels ==
+          scrollController.position.maxScrollExtent) {
         context.read<StoryCubit>().getLazyStories();
       }
     });
@@ -118,7 +119,7 @@ class _StoriesScreenState extends State<StoriesScreen> {
               } else {
                 return Center(
                   child: Text(
-                    state.stateStories.message ?? '',
+                    state.stateStories.message,
                   ),
                 );
               }

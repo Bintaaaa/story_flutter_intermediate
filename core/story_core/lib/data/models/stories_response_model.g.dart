@@ -16,11 +16,3 @@ StoriesResponseModel _$StoriesResponseModelFromJson(
               (e) => StoryItemResponseModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
-
-Map<String, dynamic> _$StoriesResponseModelToJson(
-        StoriesResponseModel instance) =>
-    <String, dynamic>{
-      'error': instance.error,
-      'message': instance.message,
-      'listStory': instance.listStory,
-    };

@@ -31,15 +31,19 @@ class ViewData<T> {
         data: data,
       );
 
-  factory ViewData.error({required String message, FailureResponse? failureResponse}) => ViewData._(
+  factory ViewData.error(
+          {required String message, FailureResponse? failureResponse}) =>
+      ViewData._(
         status: ViewState.error,
         message: message,
         failure: failureResponse,
       );
 
-  factory ViewData.loading({String? message}) => ViewData._(status: ViewState.loading, message: message ?? "");
+  factory ViewData.loading({String? message}) =>
+      ViewData._(status: ViewState.loading, message: message ?? "");
 
   factory ViewData.initial() => ViewData._(status: ViewState.initial);
 
-  factory ViewData.noData({required String message}) => ViewData._(status: ViewState.noData, message: message);
+  factory ViewData.noData({required String message}) =>
+      ViewData._(status: ViewState.noData, message: message);
 }

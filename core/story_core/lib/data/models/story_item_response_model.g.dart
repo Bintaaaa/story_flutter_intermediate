@@ -17,15 +17,3 @@ StoryItemResponseModel _$StoryItemResponseModelFromJson(
       lat: (json['lat'] as num?)?.toDouble(),
       lon: (json['lon'] as num?)?.toDouble(),
     );
-
-Map<String, dynamic> _$StoryItemResponseModelToJson(
-        StoryItemResponseModel instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'description': instance.description,
-      'photoUrl': instance.photoUrl,
-      'createdAt': instance.createdAt,
-      'lat': instance.lat,
-      'lon': instance.lon,
-    };

@@ -49,8 +49,10 @@ class NetworkInterceptors extends Interceptor {
       final headers = _defaultHeaders();
       options.headers.addAll(headers);
 
-      final requestBody = const JsonEncoder.withIndent('  ').convert(options.data);
-      final queryParameters = const JsonEncoder.withIndent('  ').convert(options.queryParameters);
+      final requestBody =
+          const JsonEncoder.withIndent('  ').convert(options.data);
+      final queryParameters =
+          const JsonEncoder.withIndent('  ').convert(options.queryParameters);
       log(
         'Request URL : ${options.uri}\n'
         '----------------------------------------------------------------------\n'
@@ -64,7 +66,8 @@ class NetworkInterceptors extends Interceptor {
       );
       return handler.next(options);
     } catch (e) {
-      final queryParameters = const JsonEncoder.withIndent('  ').convert(options.queryParameters);
+      final queryParameters =
+          const JsonEncoder.withIndent('  ').convert(options.queryParameters);
       log(
         'Request URL : ${options.uri}\n'
         '----------------------------------------------------------------------\n'

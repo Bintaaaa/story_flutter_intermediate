@@ -9,7 +9,8 @@ class SignUpState extends Equatable {
     required this.signUpState,
   });
 
-  SignUpState copyWith({ViewData<RegisterResponseEntity>? signUpState}) => SignUpState(
+  SignUpState copyWith({ViewData<RegisterResponseEntity>? signUpState}) =>
+      SignUpState(
         signUpState: signUpState ?? this.signUpState,
       );
 

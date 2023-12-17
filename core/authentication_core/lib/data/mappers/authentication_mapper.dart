@@ -10,17 +10,21 @@ import 'package:shared_common/models/general_response_model.dart';
 class AuthenticationMapper {
   const AuthenticationMapper();
 
-  RegisterResponseEntity registerResponseModelToEntity(GeneralResponseModel data) => RegisterResponseEntity(
+  RegisterResponseEntity registerResponseModelToEntity(
+          GeneralResponseModel data) =>
+      RegisterResponseEntity(
         isSuccess: !(data.error ?? false),
       );
 
-  RegisterBodyModel registerBodyEntityToModel(RegisterBodyEntity data) => RegisterBodyModel(
+  RegisterBodyModel registerBodyEntityToModel(RegisterBodyEntity data) =>
+      RegisterBodyModel(
         name: data.name,
         email: data.email,
         password: data.password,
       );
 
-  SignInResponseEntity signInResponseModelToEntity(SignInResponseModel data) => SignInResponseEntity(
+  SignInResponseEntity signInResponseModelToEntity(SignInResponseModel data) =>
+      SignInResponseEntity(
         error: data.error ?? true,
         message: data.message ?? "error",
         loginResult: signInResultModelToEntity(
@@ -28,13 +32,16 @@ class AuthenticationMapper {
         ),
       );
 
-  SignInResultResponseEntity signInResultModelToEntity(SignInResultResponseModel data) => SignInResultResponseEntity(
+  SignInResultResponseEntity signInResultModelToEntity(
+          SignInResultResponseModel data) =>
+      SignInResultResponseEntity(
         userId: data.userId ?? "000",
         name: data.name ?? "NOT FOUND NAME",
         token: data.token ?? "",
       );
 
-  SignInBodyModel signInBodyEntityToModel(SignInBodyEntity data) => SignInBodyModel(
+  SignInBodyModel signInBodyEntityToModel(SignInBodyEntity data) =>
+      SignInBodyModel(
         email: data.email,
         password: data.password,
       );

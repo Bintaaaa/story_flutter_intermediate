@@ -24,7 +24,8 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   });
 
   @override
-  Future<Either<FailureResponse, RegisterResponseEntity>> signUp({required RegisterBodyEntity params}) async {
+  Future<Either<FailureResponse, RegisterResponseEntity>> signUp(
+      {required RegisterBodyEntity params}) async {
     try {
       final response = await authenticationRemoteDatasource.signUp(
         params: authenticationMapper.registerBodyEntityToModel(
@@ -46,7 +47,8 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   }
 
   @override
-  Future<Either<FailureResponse, SignInResponseEntity>> signIn({required SignInBodyEntity params}) async {
+  Future<Either<FailureResponse, SignInResponseEntity>> signIn(
+      {required SignInBodyEntity params}) async {
     try {
       final response = await authenticationRemoteDatasource.signIn(
         params: authenticationMapper.signInBodyEntityToModel(
@@ -68,7 +70,8 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   }
 
   @override
-  Future<Either<FailureResponse, bool>> cacheToken({required String token}) async {
+  Future<Either<FailureResponse, bool>> cacheToken(
+      {required String token}) async {
     try {
       log("Success Caching Token");
       final response = await authenticationLocalDatasource.cacheToken(

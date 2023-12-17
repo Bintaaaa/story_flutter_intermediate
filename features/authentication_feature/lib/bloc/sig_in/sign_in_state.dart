@@ -9,7 +9,8 @@ class SignInState extends Equatable {
     required this.signInState,
   });
 
-  SignInState copyWith({ViewData<SignInResponseEntity>? signInState}) => SignInState(
+  SignInState copyWith({ViewData<SignInResponseEntity>? signInState}) =>
+      SignInState(
         signInState: signInState ?? this.signInState,
       );
 

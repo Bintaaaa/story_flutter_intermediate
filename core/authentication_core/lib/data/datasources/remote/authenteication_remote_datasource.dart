@@ -14,7 +14,8 @@ abstract class AuthenticationRemoteDatasource {
   });
 }
 
-class AuthenticationRemoteDatasourceImpl implements AuthenticationRemoteDatasource {
+class AuthenticationRemoteDatasourceImpl
+    implements AuthenticationRemoteDatasource {
   final Dio dio;
 
   const AuthenticationRemoteDatasourceImpl({
@@ -22,7 +23,8 @@ class AuthenticationRemoteDatasourceImpl implements AuthenticationRemoteDatasour
   });
 
   @override
-  Future<GeneralResponseModel> signUp({required RegisterBodyModel params}) async {
+  Future<GeneralResponseModel> signUp(
+      {required RegisterBodyModel params}) async {
     try {
       final response = await dio.post(
         ConstansValue.network.register,

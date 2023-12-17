@@ -22,5 +22,6 @@ class StoryItemResponseModel {
     this.lon,
   });
 
-  factory StoryItemResponseModel.fromJson(Map<String, dynamic> json) => _$StoryItemResponseModelFromJson(json);
+  factory StoryItemResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$StoryItemResponseModelFromJson(json);
 }

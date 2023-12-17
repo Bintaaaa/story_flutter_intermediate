@@ -107,7 +107,7 @@ class _MapsWidgetState extends State<MapsWidget> {
     super.initState();
     if (widget.lat != 0) {
       final marker = Marker(
-        markerId: MarkerId("loc"),
+        markerId: const MarkerId("loc"),
         position: LatLng(
           widget.lat!,
           widget.lng!,

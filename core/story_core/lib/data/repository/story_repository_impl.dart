@@ -19,7 +19,8 @@ class StoryRepositoryImpl implements StoryRepository {
   });
 
   @override
-  Future<Either<FailureResponse, CreateStoryResponseEntity>> createStory({required CreateStoryBodyEntity data}) async {
+  Future<Either<FailureResponse, CreateStoryResponseEntity>> createStory(
+      {required CreateStoryBodyEntity data}) async {
     try {
       final response = await storiesRemoteDatasource.createStory(
         data: storyMapper.createStoryEntityToModel(
@@ -41,7 +42,8 @@ class StoryRepositoryImpl implements StoryRepository {
   }
 
   @override
-  Future<Either<FailureResponse, List<StoryItemResponseEntity>>> getStories({int page = 1}) async {
+  Future<Either<FailureResponse, List<StoryItemResponseEntity>>> getStories(
+      {int page = 1}) async {
     try {
       final response = await storiesRemoteDatasource.getStories(
         page: page,
@@ -62,7 +64,8 @@ class StoryRepositoryImpl implements StoryRepository {
   }
 
   @override
-  Future<Either<FailureResponse, StoryResponseEntity>> getStory(String id) async {
+  Future<Either<FailureResponse, StoryResponseEntity>> getStory(
+      String id) async {
     try {
       final response = await storiesRemoteDatasource.getStory(
         id,

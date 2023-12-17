@@ -14,7 +14,8 @@ class SignInResponseModel {
     this.loginResult,
   });
 
-  factory SignInResponseModel.fromJson(Map<String, dynamic> json) => _$SignInResponseModelFromJson(json);
+  factory SignInResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$SignInResponseModelFromJson(json);
 }
 
 @JsonSerializable()
@@ -29,5 +30,6 @@ class SignInResultResponseModel {
     this.token,
   });
 
-  factory SignInResultResponseModel.fromJson(Map<String, dynamic> json) => _$SignInResultResponseModelFromJson(json);
+  factory SignInResultResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$SignInResultResponseModelFromJson(json);
 }

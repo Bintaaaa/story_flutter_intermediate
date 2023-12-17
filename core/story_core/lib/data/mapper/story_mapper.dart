@@ -10,7 +10,8 @@ import 'package:story_core/domains/entities/story_response_entity.dart';
 class StoryMapper {
   const StoryMapper();
 
-  List<StoryItemResponseEntity> storiesListResponseModelToEntity(List<StoryItemResponseModel> data) {
+  List<StoryItemResponseEntity> storiesListResponseModelToEntity(
+      List<StoryItemResponseModel> data) {
     List<StoryItemResponseEntity> newData = [];
     for (var element in data) {
       newData.add(
@@ -28,7 +29,8 @@ class StoryMapper {
     return newData;
   }
 
-  StoryResponseEntity storyResponseModelToEntity(StoryResponseModel data) => StoryResponseEntity(
+  StoryResponseEntity storyResponseModelToEntity(StoryResponseModel data) =>
+      StoryResponseEntity(
         error: data.error ?? true,
         message: data.message ?? "Error",
         story: storyItemResponseModelToEntity(
@@ -36,7 +38,9 @@ class StoryMapper {
         ),
       );
 
-  StoryItemResponseModel storyItemResponseModelToEntity(StoryItemResponseModel data) => StoryItemResponseModel(
+  StoryItemResponseModel storyItemResponseModelToEntity(
+          StoryItemResponseModel data) =>
+      StoryItemResponseModel(
         id: data.id ?? "story-id-null",
         name: data.name ?? "Name Not Found",
         description: data.description ?? "Description Not FOUND",
@@ -46,14 +50,17 @@ class StoryMapper {
         lon: data.lon ?? 0,
       );
 
-  CreateStoryBodyModel createStoryEntityToModel(CreateStoryBodyEntity data) => CreateStoryBodyModel(
+  CreateStoryBodyModel createStoryEntityToModel(CreateStoryBodyEntity data) =>
+      CreateStoryBodyModel(
         description: data.description,
         lat: data.lat,
         lng: data.lng,
         filePath: data.file!.path,
       );
 
-  CreateStoryResponseEntity createStoryResponseModelToEntity(GeneralResponseModel data) => CreateStoryResponseEntity(
+  CreateStoryResponseEntity createStoryResponseModelToEntity(
+          GeneralResponseModel data) =>
+      CreateStoryResponseEntity(
         isSuccess: !(data.error ?? true),
       );
 }

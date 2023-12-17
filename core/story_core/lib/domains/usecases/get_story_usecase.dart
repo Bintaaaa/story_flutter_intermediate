@@ -12,7 +12,9 @@ class GetStoryUseCase extends UseCase<StoryResponseEntity, String> {
   });
 
   @override
-  Future<Either<FailureResponse, StoryResponseEntity>> call(String parameter) async => await storyRepository.getStory(
+  Future<Either<FailureResponse, StoryResponseEntity>> call(
+          String parameter) async =>
+      await storyRepository.getStory(
         parameter,
       );
 }

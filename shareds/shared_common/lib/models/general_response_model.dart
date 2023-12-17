@@ -7,7 +7,8 @@ class GeneralResponseModel {
     this.message,
   });
 
-  factory GeneralResponseModel.fromJson(Map<String, dynamic> json) => GeneralResponseModel(
+  factory GeneralResponseModel.fromJson(Map<String, dynamic> json) =>
+      GeneralResponseModel(
         error: json["error"],
         message: json["message"],
       );

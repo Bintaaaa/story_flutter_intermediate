@@ -11,5 +11,6 @@ class GetTokenUseCase extends UseCase<String, NoParams> {
   });
 
   @override
-  Future<Either<FailureResponse, String>> call(NoParams parameter) async => authenticationRepository.getToken();
+  Future<Either<FailureResponse, String>> call(NoParams parameter) async =>
+      authenticationRepository.getToken();
 }

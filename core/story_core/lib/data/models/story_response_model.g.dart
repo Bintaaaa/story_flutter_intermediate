@@ -15,10 +15,3 @@ StoryResponseModel _$StoryResponseModelFromJson(Map<String, dynamic> json) =>
           : StoryItemResponseModel.fromJson(
               json['story'] as Map<String, dynamic>),
     );
-
-Map<String, dynamic> _$StoryResponseModelToJson(StoryResponseModel instance) =>
-    <String, dynamic>{
-      'error': instance.error,
-      'message': instance.message,
-      'story': instance.story,
-    };

@@ -15,7 +15,10 @@ class SignUpCubit extends Cubit<SignUpState> {
           ),
         );
 
-  signUp({required String name, required String email, required String password}) async {
+  signUp(
+      {required String name,
+      required String email,
+      required String password}) async {
     emit(
       state.copyWith(
         signUpState: ViewData.loading(),

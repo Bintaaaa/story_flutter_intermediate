@@ -8,7 +8,8 @@ import 'package:story_core/data/models/story_response_model.dart';
 abstract class StoriesRemoteDatasource {
   Future<StoriesResponseModel> getStories({int page = 1});
   Future<StoryResponseModel> getStory(String id);
-  Future<GeneralResponseModel> createStory({required CreateStoryBodyModel data});
+  Future<GeneralResponseModel> createStory(
+      {required CreateStoryBodyModel data});
 }
 
 class StoriesRemoteDatasourceImpl implements StoriesRemoteDatasource {
@@ -47,7 +48,8 @@ class StoriesRemoteDatasourceImpl implements StoriesRemoteDatasource {
   }
 
   @override
-  Future<GeneralResponseModel> createStory({required CreateStoryBodyModel data}) async {
+  Future<GeneralResponseModel> createStory(
+      {required CreateStoryBodyModel data}) async {
     try {
       final response = await dio.post(
         ConstansValue.network.stories,
