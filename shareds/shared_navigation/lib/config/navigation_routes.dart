@@ -8,6 +8,7 @@ import 'package:authentication_feature/screen/sign_up_screen.dart';
 import 'package:onboarding_feature/bloc/splash/splash_cubit.dart';
 import 'package:onboarding_feature/screen/splash_screen.dart';
 import 'package:shared_common/constans/constans_values.dart';
+import 'package:shared_common/flavor/flavor_config.dart';
 import 'package:shared_libraries/flutter_bloc/flutter_bloc.dart';
 import 'package:shared_libraries/get_it/get_it.dart';
 import 'package:shared_libraries/go_router/go_router.dart';
@@ -115,22 +116,23 @@ class NavigationRoutes {
           child: const ProfileScreen(),
         ),
       ),
-      GoRoute(
-        path: ConstansValue.routes.storyMapsPath,
-        name: ConstansValue.routes.storyMapsName,
-        builder: (context, state) => MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (context) => MapsCubit()
-                ..getMapsPermission()
-                ..getMyCurrentLocation(),
+      if (FlavorConfig.instance.isPremium)
+        GoRoute(
+          path: ConstansValue.routes.storyMapsPath,
+          name: ConstansValue.routes.storyMapsName,
+          builder: (context, state) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => MapsCubit()
+                  ..getMapsPermission()
+                  ..getMyCurrentLocation(),
+              ),
+            ],
+            child: StoryMapsScreen(
+              mapsCubit: state.extra as MapsCubit,
             ),
-          ],
-          child: StoryMapsScreen(
-            mapsCubit: state.extra as MapsCubit,
           ),
         ),
-      ),
     ];
   }
 }
