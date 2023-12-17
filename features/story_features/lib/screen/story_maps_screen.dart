@@ -33,55 +33,51 @@ class _StoryMapsScreenState extends State<StoryMapsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Stack(
-          children: [
-            BlocBuilder<MapsCubit, MapsState>(
-              builder: (context, state) {
-                final status = state.locationState.status;
-                if (status.isLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (status.isHasData) {
-                  final data = state.locationState.data;
-                  final dataMarkers = state.setMarkerState.data;
-                  return GoogleMap(
-                    onMapCreated: (controller) {
-                      setState(() {
-                        mapController = controller;
-                      });
-                    },
-                    markers: dataMarkers!,
-                    onTap: (position) {
-                      context.read<MapsCubit>().getCoordinateByMark(
-                            position,
-                            mapController,
-                          );
-                      log(
-                        "position you tap on lat ${position.latitude} on long ${position.longitude}",
+      body: SafeArea(
+        child: BlocBuilder<MapsCubit, MapsState>(
+          builder: (context, state) {
+            final status = state.locationState.status;
+            if (status.isLoading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (status.isHasData) {
+              final data = state.locationState.data;
+              final dataMarkers = state.setMarkerState.data;
+              return GoogleMap(
+                onMapCreated: (controller) {
+                  setState(() {
+                    mapController = controller;
+                  });
+                },
+                markers: dataMarkers!,
+                onTap: (position) {
+                  context.read<MapsCubit>().getCoordinateByMark(
+                        position,
+                        mapController,
                       );
-                    },
-                    myLocationButtonEnabled: true,
-                    zoomControlsEnabled: false,
-                    mapToolbarEnabled: false,
-                    myLocationEnabled: true,
-                    initialCameraPosition: CameraPosition(
-                      zoom: 18,
-                      target: LatLng(
-                        data!.latitude!,
-                        data.longitude!,
-                      ),
-                    ),
+                  log(
+                    "position you tap on lat ${position.latitude} on long ${position.longitude}",
                   );
-                } else {
-                  return Text(
-                    state.locationState.message,
-                  );
-                }
-              },
-            ),
-          ],
+                },
+                myLocationButtonEnabled: true,
+                zoomControlsEnabled: false,
+                mapToolbarEnabled: false,
+                myLocationEnabled: true,
+                initialCameraPosition: CameraPosition(
+                  zoom: 18,
+                  target: LatLng(
+                    data!.latitude!,
+                    data.longitude!,
+                  ),
+                ),
+              );
+            } else {
+              return Text(
+                state.locationState.message,
+              );
+            }
+          },
         ),
       ),
       floatingActionButton: Container(
@@ -101,7 +97,7 @@ class _StoryMapsScreenState extends State<StoryMapsScreen> {
             BoxShadow(
               color: Colors.black45,
               blurRadius: 10,
-              offset: Offset(10, 4),
+              offset: Offset(2, 4),
             )
           ],
         ),
