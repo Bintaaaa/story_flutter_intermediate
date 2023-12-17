@@ -7,10 +7,17 @@ import 'package:shared_libraries/intl/app_localizations.dart';
 import 'package:story_features/bloc/story_cubit.dart';
 import 'package:story_features/bloc/story_state.dart';
 
-class StoryDetailScreen extends StatelessWidget {
+class StoryDetailScreen extends StatefulWidget {
   const StoryDetailScreen({
     super.key,
   });
+
+  @override
+  State<StoryDetailScreen> createState() => _StoryDetailScreenState();
+}
+
+class _StoryDetailScreenState extends State<StoryDetailScreen> {
+  double height = 1000;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +28,22 @@ class StoryDetailScreen extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: BlocBuilder<StoryCubit, StoryState>(
+        child: BlocConsumer<StoryCubit, StoryState>(
+          listener: (context, state) {
+            final status = state.stateStory.status;
+            if (status.isHasData) {
+              setState(() {
+                height = 600.0; // Set the target height for the bounce animation
+              });
+              Future.delayed(const Duration(milliseconds: 200), () {
+                setState(
+                  () {
+                    height = 500; // Reset the height after the bounce animation
+                  },
+                );
+              });
+            }
+          },
           builder: (context, state) {
             final status = state.stateStory.status;
             if (status.isLoading) {
@@ -42,10 +64,15 @@ class StoryDetailScreen extends StatelessWidget {
                 ),
                 child: ListView(
                   children: [
-                    ClipRRect(
-                      child: ImageNetworkComponent(
-                        image: data.photoUrl!,
-                        height: 500.0,
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.bounceOut,
+                      height: height,
+                      child: ClipRRect(
+                        child: ImageNetworkComponent(
+                          image: data.photoUrl!,
+                          height: height,
+                        ),
                       ),
                     ),
                     const SizedBox.square(
