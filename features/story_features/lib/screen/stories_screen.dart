@@ -18,6 +18,8 @@ class StoriesScreen extends StatefulWidget {
 
 class _StoriesScreenState extends State<StoriesScreen> {
   ScrollController scrollController = ScrollController();
+
+  @override
   void initState() {
     super.initState();
     scrollController.addListener(() {

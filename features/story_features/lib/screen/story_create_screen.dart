@@ -6,6 +6,7 @@ import 'package:shared_component/text_field/text_field_component.dart';
 import 'package:shared_libraries/flutter_bloc/flutter_bloc.dart';
 import 'package:shared_libraries/go_router/go_router.dart';
 import 'package:shared_libraries/intl/app_localizations.dart';
+import 'package:story_features/bloc/maps/maps_cubit.dart';
 import 'package:story_features/bloc/story_cubit.dart';
 import 'package:story_features/bloc/story_state.dart';
 
@@ -22,6 +23,7 @@ class StoryCreateScreen extends StatefulWidget {
 
 class _StoryCreateScreenState extends State<StoryCreateScreen> {
   TextEditingController descriptionController = TextEditingController(text: "");
+  final MapsCubit mapsCubit = MapsCubit();
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,16 @@ class _StoryCreateScreenState extends State<StoryCreateScreen> {
       appBar: AppBar(
         title: Text(
           AppLocalizations.of(context)!.createAppBar,
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.pushNamed(
+            ConstansValue.routes.storyMapsName,
+          );
+        },
+        child: const Icon(
+          Icons.pin_drop_rounded,
         ),
       ),
       body: SafeArea(

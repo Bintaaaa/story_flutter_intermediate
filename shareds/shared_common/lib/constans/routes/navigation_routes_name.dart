@@ -24,4 +24,7 @@ class NavigationRoutesName {
 
   String get profileName => "profileName";
   String get profilePath => "/profile";
+
+  String get storyMapsName => "storyMapsName";
+  String get storyMapsPath => "/story-maps";
 }

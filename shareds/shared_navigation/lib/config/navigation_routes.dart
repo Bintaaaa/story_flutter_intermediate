@@ -11,10 +11,12 @@ import 'package:shared_common/constans/constans_values.dart';
 import 'package:shared_libraries/flutter_bloc/flutter_bloc.dart';
 import 'package:shared_libraries/get_it/get_it.dart';
 import 'package:shared_libraries/go_router/go_router.dart';
+import 'package:story_features/bloc/maps/maps_cubit.dart';
 import 'package:story_features/bloc/story_cubit.dart';
 import 'package:story_features/screen/stories_screen.dart';
 import 'package:story_features/screen/story_create_screen.dart';
 import 'package:story_features/screen/story_detail_screen.dart';
+import 'package:story_features/screen/story_maps_screen.dart';
 
 class NavigationRoutes {
   List<RouteBase> get routes => _routes();
@@ -59,7 +61,7 @@ class NavigationRoutes {
       GoRoute(
         path: ConstansValue.routes.storiesPath,
         name: ConstansValue.routes.storiesName,
-        builder: (context, state) => BlocProvider<StoryCubit>(
+        builder: (context, state) => BlocProvider(
           create: (context) => StoryCubit(
             getStoriesUseCase: sl(),
             getStoryUseCase: sl(),
@@ -85,12 +87,19 @@ class NavigationRoutes {
       GoRoute(
         path: ConstansValue.routes.createStoriesPath,
         name: ConstansValue.routes.createStoriesName,
-        builder: (context, state) => BlocProvider<StoryCubit>(
-          create: (context) => StoryCubit(
-            getStoriesUseCase: sl(),
-            getStoryUseCase: sl(),
-            postStoryUseCase: sl(),
-          ),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider<StoryCubit>(
+              create: (context) => StoryCubit(
+                getStoriesUseCase: sl(),
+                getStoryUseCase: sl(),
+                postStoryUseCase: sl(),
+              ),
+            ),
+            BlocProvider(
+              create: (context) => MapsCubit()..getMapsPermission(),
+            ),
+          ],
           child: StoryCreateScreen(
             bloc: state.extra as StoryCubit,
           ),
@@ -104,6 +113,20 @@ class NavigationRoutes {
             removeTokenUseCase: sl(),
           ),
           child: const ProfileScreen(),
+        ),
+      ),
+      GoRoute(
+        path: ConstansValue.routes.storyMapsPath,
+        name: ConstansValue.routes.storyMapsName,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => MapsCubit()
+                ..getMapsPermission()
+                ..getMyCurrentLocation(),
+            ),
+          ],
+          child: const StoryMapsScreen(),
         ),
       ),
     ];
