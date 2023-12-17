@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_common/states/view_data_state.dart';
 import 'package:shared_component/images/image_network_component.dart';
 import 'package:shared_libraries/flutter_bloc/flutter_bloc.dart';
+import 'package:shared_libraries/google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_libraries/intl/app_localizations.dart';
 import 'package:story_features/bloc/story_cubit.dart';
 import 'package:story_features/bloc/story_state.dart';
@@ -66,6 +67,13 @@ class StoryDetailScreen extends StatelessWidget {
                         fontSize: 16,
                       ),
                     ),
+                    const SizedBox.square(
+                      dimension: 16.0,
+                    ),
+                    MapsWidget(
+                      lat: data.lat,
+                      lng: data.lon,
+                    ),
                   ],
                 ),
               );
@@ -80,5 +88,53 @@ class StoryDetailScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class MapsWidget extends StatefulWidget {
+  final double? lat;
+  final double? lng;
+  const MapsWidget({super.key, this.lat, this.lng});
+
+  @override
+  State<MapsWidget> createState() => _MapsWidgetState();
+}
+
+class _MapsWidgetState extends State<MapsWidget> {
+  Set<Marker> markers = {};
+  @override
+  void initState() {
+    super.initState();
+    if (widget.lat != 0) {
+      final marker = Marker(
+        markerId: MarkerId("loc"),
+        position: LatLng(
+          widget.lat!,
+          widget.lng!,
+        ),
+      );
+      markers.add(marker);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.lat == 0) {
+      return const SizedBox();
+    } else {
+      return SizedBox(
+        height: 200,
+        child: GoogleMap(
+          markers: markers,
+          initialCameraPosition: CameraPosition(
+            zoom: 18,
+            target: LatLng(
+              widget.lat!,
+              widget.lng!,
+            ),
+          ),
+        ),
+      );
+    }
   }
 }

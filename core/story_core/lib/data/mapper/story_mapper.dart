@@ -42,8 +42,8 @@ class StoryMapper {
         description: data.description ?? "Description Not FOUND",
         photoUrl: data.photoUrl ?? "URL NOT FOUND",
         createdAt: data.createdAt ?? "000000",
-        lat: data.lat ?? 000,
-        lon: data.lon ?? 000,
+        lat: data.lat ?? 0,
+        lon: data.lon ?? 0,
       );
 
   CreateStoryBodyModel createStoryEntityToModel(CreateStoryBodyEntity data) => CreateStoryBodyModel(
