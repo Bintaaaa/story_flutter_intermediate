@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_common/constans/constans_values.dart';
+import 'package:shared_common/flavor/flavor_config.dart';
 import 'package:shared_common/states/view_data_state.dart';
 import 'package:shared_component/button/button_filled_component.dart';
 import 'package:shared_component/text_field/text_field_component.dart';
@@ -34,17 +35,19 @@ class _StoryCreateScreenState extends State<StoryCreateScreen> {
           AppLocalizations.of(context)!.createAppBar,
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.pushNamed(
-            ConstansValue.routes.storyMapsName,
-            extra: mapsCubit,
-          );
-        },
-        child: const Icon(
-          Icons.pin_drop_rounded,
-        ),
-      ),
+      floatingActionButton: FlavorConfig.instance.isPremium
+          ? FloatingActionButton(
+              onPressed: () {
+                context.pushNamed(
+                  ConstansValue.routes.storyMapsName,
+                  extra: mapsCubit,
+                );
+              },
+              child: const Icon(
+                Icons.pin_drop_rounded,
+              ),
+            )
+          : null,
       body: SafeArea(
         child: Container(
           margin: const EdgeInsets.all(
@@ -79,8 +82,7 @@ class _StoryCreateScreenState extends State<StoryCreateScreen> {
                               ),
                             )
                           : Center(
-                              child: Text(
-                                  AppLocalizations.of(context)!.takeApicture),
+                              child: Text(AppLocalizations.of(context)!.takeApicture),
                             ),
                     );
                   },
