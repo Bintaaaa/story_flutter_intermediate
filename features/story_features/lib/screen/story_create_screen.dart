@@ -35,19 +35,25 @@ class _StoryCreateScreenState extends State<StoryCreateScreen> {
           AppLocalizations.of(context)!.createAppBar,
         ),
       ),
-      floatingActionButton: FlavorConfig.instance.isPremium
-          ? FloatingActionButton(
-              onPressed: () {
-                context.pushNamed(
-                  ConstansValue.routes.storyMapsName,
-                  extra: mapsCubit,
-                );
-              },
-              child: const Icon(
-                Icons.pin_drop_rounded,
-              ),
-            )
-          : null,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          if (FlavorConfig.instance.isPremium) {
+            context.pushNamed(
+              ConstansValue.routes.storyMapsName,
+              extra: mapsCubit,
+            );
+          } else {
+            const String message = "Fitur ini hanya tersedia pada Aplikasi Premium";
+            const snackBar = SnackBar(
+              content: Text(message),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          }
+        },
+        child: const Icon(
+          Icons.pin_drop_rounded,
+        ),
+      ),
       body: SafeArea(
         child: Container(
           margin: const EdgeInsets.all(
@@ -82,8 +88,7 @@ class _StoryCreateScreenState extends State<StoryCreateScreen> {
                               ),
                             )
                           : Center(
-                              child: Text(
-                                  AppLocalizations.of(context)!.takeApicture),
+                              child: Text(AppLocalizations.of(context)!.takeApicture),
                             ),
                     );
                   },
