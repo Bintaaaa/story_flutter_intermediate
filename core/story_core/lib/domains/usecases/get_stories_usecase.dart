@@ -42,13 +42,23 @@ class GetStoriesUseCase extends UseCase<StoriesEntity, int> {
             ),
           );
         } else {
-          newEntity.addAll(data);
-          return Right(
-            StoriesEntity(
-              listStories: newEntity,
-              message: data.isEmpty ? "Data sudah ditampilkan semua" : "",
-            ),
-          );
+          if (data.isEmpty) {
+            return Right(
+              StoriesEntity(
+                listStories: newEntity,
+                message: data.isEmpty ? "Data sudah ditampilkan semua" : "",
+              ),
+            );
+          } else {
+            newEntity.addAll(data);
+            page++;
+            return Right(
+              StoriesEntity(
+                listStories: newEntity,
+                message: data.isEmpty ? "Data sudah ditampilkan semua" : "",
+              ),
+            );
+          }
         }
       },
     );
