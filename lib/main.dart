@@ -8,7 +8,7 @@ import 'package:shared_navigation/config/navigation_config.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   FlavorConfig(
-    flavorType: FlavorType.free,
+    flavorType: FlavorType.premium,
   );
   await Injections().initialize();
   runApp(const MyApp());

@@ -74,14 +74,21 @@ class NavigationRoutes {
       GoRoute(
         path: ConstansValue.routes.storyPath,
         name: ConstansValue.routes.storyName,
-        builder: (context, state) => BlocProvider<StoryCubit>(
-          create: (context) => StoryCubit(
-            getStoriesUseCase: sl(),
-            getStoryUseCase: sl(),
-            postStoryUseCase: sl(),
-          )..getStory(
-              state.pathParameters["id"]!,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider<StoryCubit>(
+              create: (context) => StoryCubit(
+                getStoriesUseCase: sl(),
+                getStoryUseCase: sl(),
+                postStoryUseCase: sl(),
+              )..getStory(
+                  state.pathParameters["id"]!,
+                ),
             ),
+            BlocProvider(
+              create: (context) => MapsCubit(),
+            ),
+          ],
           child: const StoryDetailScreen(),
         ),
       ),

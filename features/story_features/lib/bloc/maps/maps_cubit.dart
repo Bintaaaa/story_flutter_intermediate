@@ -53,9 +53,11 @@ class MapsCubit extends Cubit<MapsState> {
 
     try {
       permissionGranted = await location.hasPermission();
-      if (permissionGranted == PermissionStatus.denied || permissionGranted == PermissionStatus.deniedForever) {
+      if (permissionGranted == PermissionStatus.denied ||
+          permissionGranted == PermissionStatus.deniedForever) {
         permissionGranted = await location.requestPermission();
-        if (permissionGranted == PermissionStatus.denied || permissionGranted == PermissionStatus.deniedForever) {
+        if (permissionGranted == PermissionStatus.denied ||
+            permissionGranted == PermissionStatus.deniedForever) {
           emit(
             state.copyWith(
               permissionState: ViewData.loaded(

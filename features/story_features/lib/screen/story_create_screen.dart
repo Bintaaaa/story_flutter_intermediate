@@ -43,7 +43,8 @@ class _StoryCreateScreenState extends State<StoryCreateScreen> {
               extra: mapsCubit,
             );
           } else {
-            const String message = "Fitur ini hanya tersedia pada Aplikasi Premium";
+            const String message =
+                "Fitur ini hanya tersedia pada Aplikasi Premium";
             const snackBar = SnackBar(
               content: Text(message),
             );
@@ -88,7 +89,8 @@ class _StoryCreateScreenState extends State<StoryCreateScreen> {
                               ),
                             )
                           : Center(
-                              child: Text(AppLocalizations.of(context)!.takeApicture),
+                              child: Text(
+                                  AppLocalizations.of(context)!.takeApicture),
                             ),
                     );
                   },
