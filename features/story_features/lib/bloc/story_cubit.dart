@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:shared_common/states/view_data_state.dart';
-import 'package:shared_common/usecase/usecase.dart';
 import 'package:shared_libraries/flutter_bloc/flutter_bloc.dart';
+import 'package:shared_libraries/google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_libraries/image_picker/image_picker.dart';
 import 'package:story_core/domains/entities/create_story_body_entity.dart';
 import 'package:story_core/domains/usecases/get_stories_usecase.dart';
@@ -28,15 +28,18 @@ class StoryCubit extends Cubit<StoryState> {
             stateImage: ViewData.initial(),
           ),
         );
+
   Future<void> getStories() async {
     emit(
       state.copyWith(
         stateStories: ViewData.loading(),
       ),
     );
-    final result = await getStoriesUseCase.call(
-      const NoParams(),
-    );
+    getLazyStories(page: 1);
+  }
+
+  Future<void> getLazyStories({int? page = 0}) async {
+    final result = await getStoriesUseCase.call(page!);
     result.fold(
         (failure) => emit(
               state.copyWith(
@@ -45,7 +48,7 @@ class StoryCubit extends Cubit<StoryState> {
                 ),
               ),
             ), (data) {
-      if (data.listStory.isEmpty) {
+      if (data.listStories.isEmpty) {
         emit(
           state.copyWith(
             stateStories: ViewData.noData(
@@ -56,9 +59,10 @@ class StoryCubit extends Cubit<StoryState> {
       } else {
         emit(
           state.copyWith(
-              stateStories: ViewData.loaded(
-            data: data,
-          )),
+            stateStories: ViewData.loaded(
+              data: data,
+            ),
+          ),
         );
       }
     });
@@ -89,9 +93,10 @@ class StoryCubit extends Cubit<StoryState> {
     });
   }
 
-  Future<void> postStory(
-    String description,
-  ) async {
+  Future<void> postStory({
+    required String description,
+    LatLng? latLng,
+  }) async {
     emit(
       state.copyWith(
         stateCreateStory: ViewData.loading(),
@@ -101,6 +106,8 @@ class StoryCubit extends Cubit<StoryState> {
       CreateStoryBodyEntity(
         description: description,
         file: state.stateImage.data,
+        lat: latLng?.latitude,
+        lng: latLng?.longitude,
       ),
     );
     result.fold(

@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'register_body_model.g.dart';
+
+@JsonSerializable()
 class RegisterBodyModel {
   final String name;
   final String email;
@@ -9,9 +14,5 @@ class RegisterBodyModel {
     required this.password,
   });
 
-  toJson() => {
-        "name": name,
-        "email": email,
-        "password": password,
-      };
+  Map<String, dynamic> toJson() => _$RegisterBodyModelToJson(this);
 }

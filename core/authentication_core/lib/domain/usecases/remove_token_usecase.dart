@@ -11,5 +11,6 @@ class RemoveTokenUseCase extends UseCase<bool, NoParams> {
   });
 
   @override
-  Future<Either<FailureResponse, bool>> call(NoParams parameter) async => authenticationRepository.removeToken();
+  Future<Either<FailureResponse, bool>> call(NoParams parameter) async =>
+      authenticationRepository.removeToken();
 }

@@ -10,7 +10,8 @@ class FailureResponse extends Equatable {
   }) {
     switch (dioException?.type) {
       case DioExceptionType.badResponse:
-        errorMessage = dioException?.response?.data["message"] ?? "Terjadi kesalahan pada server";
+        errorMessage = dioException?.response?.data["message"] ??
+            "Terjadi kesalahan pada server";
         break;
       case DioExceptionType.badCertificate:
         errorMessage = "Terjadi error pada system kami, laporkan segera!";

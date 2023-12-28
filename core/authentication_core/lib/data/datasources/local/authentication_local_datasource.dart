@@ -7,7 +7,8 @@ abstract class AuthenticationLocalDatasource {
   Future<bool> removeToken();
 }
 
-class AuthenticationLocalDatasourceImpl implements AuthenticationLocalDatasource {
+class AuthenticationLocalDatasourceImpl
+    implements AuthenticationLocalDatasource {
   final SharedPreferences sharedPreferences;
 
   const AuthenticationLocalDatasourceImpl({

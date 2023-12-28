@@ -5,14 +5,17 @@ import 'package:shared_common/error/failure_response.dart';
 import 'package:shared_common/usecase/usecase.dart';
 import 'package:shared_libraries/dartz/dartz.dart';
 
-class PostSignInUseCase extends UseCase<SignInResponseEntity, SignInBodyEntity> {
+class PostSignInUseCase
+    extends UseCase<SignInResponseEntity, SignInBodyEntity> {
   final AuthenticationRepository authenticationRepository;
 
   PostSignInUseCase({required this.authenticationRepository});
 
   @override
-  Future<Either<FailureResponse, SignInResponseEntity>> call(SignInBodyEntity parameter) async {
-    bool isEmptyAllField = parameter.email.isEmpty && parameter.password.isEmpty;
+  Future<Either<FailureResponse, SignInResponseEntity>> call(
+      SignInBodyEntity parameter) async {
+    bool isEmptyAllField =
+        parameter.email.isEmpty && parameter.password.isEmpty;
     if (isEmptyAllField) {
       return Left(
         FailureResponse(

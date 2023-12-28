@@ -44,6 +44,7 @@ class NavigationRedirect {
       ConstansValue.routes.createStoriesPath,
       ConstansValue.routes.storyPath,
       ConstansValue.routes.profilePath,
+      ConstansValue.routes.storyMapsPath,
     ];
     final List<String> unneededTokenLogin = [
       ConstansValue.routes.optionalAuthPath,

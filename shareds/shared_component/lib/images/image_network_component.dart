@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class ImageNetworkComponent extends StatelessWidget {
   final String image;
-  const ImageNetworkComponent({super.key, double? height, required this.image}) : _height = height ?? 200.0;
+  const ImageNetworkComponent({super.key, double? height, required this.image})
+      : _height = height ?? 200.0;
   final double _height;
 
   @override
@@ -16,14 +17,16 @@ class ImageNetworkComponent extends StatelessWidget {
         fit: BoxFit.cover,
         height: _height,
         width: double.infinity,
-        loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+        loadingBuilder: (BuildContext context, Widget child,
+            ImageChunkEvent? loadingProgress) {
           if (loadingProgress == null) {
             return child;
           }
           return Center(
             child: CircularProgressIndicator(
               value: loadingProgress.expectedTotalBytes != null
-                  ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                  ? loadingProgress.cumulativeBytesLoaded /
+                      loadingProgress.expectedTotalBytes!
                   : null,
             ),
           );

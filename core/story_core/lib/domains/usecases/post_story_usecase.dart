@@ -6,7 +6,8 @@ import 'package:story_core/domains/entities/create_story_body_entity.dart';
 import 'package:story_core/domains/entities/create_story_response_entity.dart';
 import 'package:story_core/domains/repository/story_repository.dart';
 
-class PostStoryUseCase extends UseCase<CreateStoryResponseEntity, CreateStoryBodyEntity> {
+class PostStoryUseCase
+    extends UseCase<CreateStoryResponseEntity, CreateStoryBodyEntity> {
   final StoryRepository storyRepository;
 
   PostStoryUseCase({
@@ -14,7 +15,8 @@ class PostStoryUseCase extends UseCase<CreateStoryResponseEntity, CreateStoryBod
   });
 
   @override
-  Future<Either<FailureResponse, CreateStoryResponseEntity>> call(CreateStoryBodyEntity parameter) async {
+  Future<Either<FailureResponse, CreateStoryResponseEntity>> call(
+      CreateStoryBodyEntity parameter) async {
     if (parameter.file.isNull() && parameter.description.isEmpty) {
       return Left(
         FailureResponse(errorMessage: "Isi dulu semuanya ya"),

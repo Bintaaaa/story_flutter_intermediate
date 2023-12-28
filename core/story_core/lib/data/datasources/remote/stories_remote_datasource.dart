@@ -6,19 +6,23 @@ import 'package:story_core/data/models/stories_response_model.dart';
 import 'package:story_core/data/models/story_response_model.dart';
 
 abstract class StoriesRemoteDatasource {
-  Future<StoriesResponseModel> getStories();
+  Future<StoriesResponseModel> getStories({int page = 1});
   Future<StoryResponseModel> getStory(String id);
-  Future<GeneralResponseModel> createStory({required CreateStoryBodyModel data});
+  Future<GeneralResponseModel> createStory(
+      {required CreateStoryBodyModel data});
 }
 
 class StoriesRemoteDatasourceImpl implements StoriesRemoteDatasource {
   final Dio dio;
   const StoriesRemoteDatasourceImpl({required this.dio});
   @override
-  Future<StoriesResponseModel> getStories() async {
+  Future<StoriesResponseModel> getStories({int page = 1}) async {
     try {
       final response = await dio.get(
         ConstansValue.network.stories,
+        queryParameters: {
+          "page": page,
+        },
       );
       return StoriesResponseModel.fromJson(
         response.data,
@@ -44,7 +48,8 @@ class StoriesRemoteDatasourceImpl implements StoriesRemoteDatasource {
   }
 
   @override
-  Future<GeneralResponseModel> createStory({required CreateStoryBodyModel data}) async {
+  Future<GeneralResponseModel> createStory(
+      {required CreateStoryBodyModel data}) async {
     try {
       final response = await dio.post(
         ConstansValue.network.stories,
